@@ -1,0 +1,239 @@
+.footer-contacts {
+    background-color: #2D2B2F;
+    padding-top: 50px;
+
+}
+
+.contacts-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-bottom: 50px;
+}
+
+.footer-contacts h3 {
+    color: #fff;
+    font-size: 30px;
+    font-weight: 500;
+    font-style: normal;
+}
+
+
+.contacts-list {
+    list-style: none;
+    padding: 0;
+}
+
+.contacts-item {
+    display: flex;
+    margin-bottom: 27px;
+    cursor: pointer;
+}
+
+.contacts-item:last-child {
+    margin-bottom: 0;
+
+}
+
+.contacts-item-logo {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    margin-right: 36px;
+}
+
+.phone-logo {
+    background-image: url('footerImage/phone.png');
+    width: 30px;
+    height: 30px;
+}
+
+.email-logo {
+    background-image: url('footerImage/email.png');
+    width: 30px;
+    height: 24.55px;
+}
+
+.skype-logo {
+    background-image: url('footerImage/skype.png');
+    width: 30px;
+    height: 30px;
+}
+
+.location-logo {
+    background-image: url('footerImage/search.png');
+    width: 20.87px;
+    height: 30px;
+}
+
+
+.contacts-item-text {
+    color: #E5E5E5;
+    font-size: 24px;
+    font-weight: 400;
+    max-width: 200px;
+    text-align: left;
+
+}
+
+.subscribe {
+    text-align: left;
+}
+
+.subscribe-form label {
+    color: #E5E5E5;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.form-container {
+    margin-top: 10px;
+}
+
+#subscribe-email {
+    width: 447px;
+    padding: 17px 21px;
+    font-size: 24px;
+    margin-right: 30px;
+    border-radius: 3px;
+}
+
+.subscribe-form-btn {
+    width: 169px;
+    color: #E5E5E5;
+    font-size: 24px;
+    text-transform: uppercase;
+    background-color: transparent;
+    border: 1px solid #fff;
+    border-radius: 3px;
+    padding: 17px 11px;
+    box-sizing: border-box;
+    cursor: pointer;
+
+}
+
+.subscribe-form-btn:hover {
+    background-color: #FFCA62;
+    color: #2D2B2F;
+    border-color: #FFCA62;
+}
+
+
+.subscribe-form-btn:active {
+    background-color: #fff;
+    color: #2D2B2F;
+    border-color: #fff;
+}
+
+
+.social-list {
+    width: 424px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.social-link {
+    display: block;
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+
+.social-link-youtube {
+    background-image: url('footerImage/youtube.png');
+}
+
+.social-link-youtube:active, .social-link-youtube:hover {
+    background-image: url('footerImage/youtube-active.png');
+}
+
+.social-link-in {
+    background-image: url('footerImage/in.png');
+}
+
+.social-link-in:active, .social-link-in:hover {
+    background-image: url('footerImage/in-active.png');
+}
+
+.social-link-google {
+    background-image: url('footerImage/google.png');
+    width: 48px;
+
+}
+
+.social-link-google:active, .social-link-google:hover {
+    background-image: url('footerImage/google-active.png');
+}
+
+.social-link-facebook {
+    background-image: url('footerImage/fb.png');
+    width: 14px;
+
+}
+
+.social-link-facebook:active, .social-link-facebook:hover {
+    background-image: url('footerImage/fb-active.png');
+}
+
+.social-link-twitter {
+    background-image: url('footerImage/tw.png');
+}
+
+.social-link-twitter:active, .social-link-twitter:hover {
+    background-image: url('footerImage/tw-active.png');
+}
+
+.footer-line {
+    width: 100%;
+    border: 1px solid #E5E5E5;
+    margin-bottom: 22px;
+
+}
+
+
+.copyrights-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 33px;
+}
+
+.footer-logo {
+    color: #E5E5E5;
+    font-size: 36px;
+    font-weight: 900;
+}
+
+
+
+.up-btn {
+    width: 36px;
+    height: 36px;
+
+    background: url('footerImage/up-btn.png') no-repeat center;
+    background-size: 36px;
+}
+
+.up-link {
+    display: block;
+    width: 36px;
+    height: 36px;
+}
+
+
+.copyright {
+    text-decoration: none;
+    color: #E5E5E5;
+    font-size: 24px;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+

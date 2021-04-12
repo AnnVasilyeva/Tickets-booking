@@ -1,0 +1,260 @@
+.header {
+    width: 1919px;
+    min-height: 500px;
+    padding: 15px 0 0;
+    background-image: url('image/bg-header.png');
+    height: 985px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-color: #000000;
+
+}
+
+
+.header.order-page {
+    background-image: url('image/bg-header-train.png');
+    background-position: center center;
+
+}
+
+
+.header-logo {
+    color: #E5E5E5;
+    font-size: 36px;
+    font-weight: 900;
+    padding-left: 258px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.header-menu {
+    background-color: #292929;
+    padding: 25px 258px;
+
+}
+
+.menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+
+}
+
+.menu-item:not(:last-child) {
+    margin-right: 85px;
+}
+
+
+.menu-item-link {
+    text-decoration: none;
+    color: #fff;
+    font-size: 30px;
+
+}
+
+
+.header-main {
+    display: flex;
+    justify-content: center;
+    margin-top: 250px;
+
+}
+
+.header-title {
+    color: #fff;
+    font-size: 72px;
+    font-weight: 200;
+    line-height: 84px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 105px;
+    margin-left: 120px;
+    align-self: center;
+}
+
+.header-title span:last-child {
+    font-weight: 700;
+}
+
+.form-search {
+    min-width: 730px;
+    max-width: 1490px;
+    background-color: rgba(41, 41, 41, 0.8);
+    padding: 80px 22px 52px;
+    box-sizing: border-box;
+}
+
+.order-page .form-search {
+    padding: 28px 40px 76px;
+}
+
+fieldset {
+    border: none;
+    padding: 0;
+}
+
+
+.form-search-ticket {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.order-page .form-search-ticket {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
+.form-search-ticket legend {
+    font-size: 30px;
+    color: #fff;
+    text-align: left;
+}
+
+.form-way-section {
+    margin-bottom: 60px;
+}
+
+
+.order-page .form-way-section {
+    margin-bottom: 0;
+
+}
+
+
+.form-way {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+
+}
+
+.form-way input {
+    width: 320px;
+    background-image: url('image/search.png');
+    background-position: right 15px center;
+    background-repeat: no-repeat;
+    background-size: 21px 30px;
+    box-sizing: border-box;
+
+}
+
+.form-search-ticket input {
+    padding: 18px 0 21px 19px;
+    border-radius: 5px;
+}
+
+.order-page .to-city, .order-page .from-date {
+    margin-right: 30px;
+}
+
+
+.change-input {
+    background-image: url('image/ic_cached_white_48dp.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 24px;
+    width: 24px;
+    height: 24px;
+}
+
+#calendar2 {
+    width: 305px;
+    font-style: inherit;
+    line-height: 1.2em;
+    font-size: 15px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.calendar-month {
+    border-bottom: 1px solid #ccc;
+}
+
+
+#calendar2 thead tr:last-child {
+    font-size: small;
+    color: rgb(85, 85, 85);
+}
+#calendar2 thead tr:nth-child(1) td:nth-child(2) {
+    color: rgb(50, 50, 50);
+}
+#calendar2 thead tr:nth-child(1) td:nth-child(1):hover, #calendar2 thead tr:nth-child(1) td:nth-child(3):hover {
+    cursor: pointer;
+}
+#calendar2 tbody td {
+    color: rgb(44, 86, 122);
+}
+#calendar2 tbody td:nth-child(n+6), #calendar2 .holiday {
+    color: rgb(231, 140, 92);
+}
+#calendar2 tbody td.today {
+    background: rgb(220, 0, 0);
+    color: #fff;
+}
+
+
+.form-date {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.form-date input {
+    width: 320px;
+    box-sizing: border-box;
+    background-image: url('image/date.png');
+    background-position: right 15px center;
+    background-repeat: no-repeat;
+}
+
+
+.form-search-btn {
+    width: 320px;
+    background-color: #FFA800;
+    border: 1px solid #FFA800;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 16px 0;
+    font-size: 24px;
+    text-transform: uppercase;
+    color: #292929;
+    align-self: flex-end;
+    margin-top: 92px;
+}
+
+.order-page .form-search-btn {
+    margin-top: 47px;
+    margin-right: 0;
+    margin-left: auto;
+}
+
+.form-search-btn:hover {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.form-search-btn:focus {
+    background-color: #fff;
+    color: #FFA800;
+    border-color: #FFA800;
+}
+
+.header-progressbar {
+    width: 100%;
+    height: 8px;
+    /* 	background-color: #FFA800; */
+}
+
+.order-page .header-progressbar {
+    width: 100%;
+    height: 98px;
+    background-color: #3E3C41;
+    /* 	padding: 23px 0 19px; */
+}
