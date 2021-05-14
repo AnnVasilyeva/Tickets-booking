@@ -2,6 +2,7 @@ import React from 'react';
 import './header.css';
 import SearchTicketsForm from "../SearchTicketsForm/SearchTicketsForm";
 
+
 export default function Header () {
     return (
         <>

@@ -43,19 +43,19 @@ export default function Footer () {
                         <h3>Подписывайтесь на нас</h3>
                         <ul className="social-list">
                             <li className="social-item">
-                                <a href="#0" className="social-link social-link-youtube"/>
+                                <a href="https://www.youtube.com/" className="social-link social-link-youtube" aria-label='youtube' aria-hidden="true"/>
                             </li>
                             <li className="social-item">
-                                <a href="#0" className="social-link social-link-in"/>
+                                <a href="https://ru.linkedin.com" className="social-link social-link-in" aria-label='linkedin' aria-hidden="true"/>
                             </li>
                             <li className="social-item">
-                                <a href="#0" className="social-link social-link-google"/>
+                                <a href="https://www.google.com/" className="social-link social-link-google" aria-label='google' aria-hidden="true"/>
                             </li>
                             <li className="social-item">
-                                <a href="#0" className="social-link social-link-facebook"/>
+                                <a href="https://www.facebook.com/" className="social-link social-link-facebook" aria-label='facebook' aria-hidden="true"/>
                             </li>
                             <li className="social-item">
-                                <a href="#0" className="social-link social-link-twitter"/>
+                                <a href="https://twitter.com/" className="social-link social-link-twitter" aria-label='twitter' aria-hidden="true"/>
                             </li>
                         </ul>
                     </div>

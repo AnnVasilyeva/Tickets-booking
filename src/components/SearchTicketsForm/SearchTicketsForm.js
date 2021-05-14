@@ -1,15 +1,20 @@
 import React, {Component} from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import bookingService from "../../services/bookingService";
 
 export default class SearchTicketsForm extends Component {
     constructor(props) {
         super(props);
+        this.service = new bookingService();
         this.state = {
             fromCity: '',
             toCity: '',
             startDate: '',
-            endDate: ''
+            endDate: '',
+            citiesList: [],
+            typingTimeout: 0,
+            isAutocomplete: false
         }
     }
 
@@ -41,13 +46,65 @@ export default class SearchTicketsForm extends Component {
             fromCity: '',
             toCity: '',
             startDate: '',
-            endDate: ''
+            endDate: '',
+            citiesList: [],
+            typingTimeout: 0,
+            isAutocomplete: false
+        })
+
+    }
+
+    onChangeInput = (e) => {
+
+        if(this.state.typingTimeout) {
+            clearTimeout(this.state.typingTimeout)
+        }
+
+        this.setState({
+            [e.target.name]: e.target.value,
+            typingTimeout: setTimeout(() => {
+                this.service.getCities(e.target.value)
+                    .then(res => {
+                        this.setState({citiesList: res, isAutocomplete: true});
+                    })
+            }, 1000)
+        })
+
+    }
+
+    onClickItem = (e) => {
+
+        this.setState({
+            fromCity: e.currentTarget.innerText,
+            citiesList: [],
+            isAutocomplete: false
         })
 
 
     }
 
+
+
+
     render () {
+        let citiesListComponent;
+        const {toCity, fromCity, isAutocomplete, citiesList} = this.state;
+
+        if(isAutocomplete) {
+
+            if(citiesList.length) {
+                citiesListComponent = (
+                    <ul className='autocomplete'>
+                        {citiesList.map(item => <li key={item.id}
+                                                    onClick={this.onClickItem}
+                                                >{item.name}</li>)}
+                    </ul>
+
+                )
+            }
+        }
+
+
         return (
 
             <div className="form-search">
@@ -55,9 +112,30 @@ export default class SearchTicketsForm extends Component {
                     <fieldset className="form-way-section">
                         <legend>Направление</legend>
                         <div className="form-way">
-                            <input name="from-city" type="text" placeholder="Откуда" required value={this.state.fromCity} onChange={(e) => this.setState({fromCity: e.target.value})}/>
+                            <div className='form-way-from'>
+                                <input name="fromCity"
+                                       type="text"
+                                       placeholder="Откуда"
+                                       required
+                                       autoComplete='off'
+                                       value={fromCity}
+                                       onChange={this.onChangeInput}
+                                />
+                                {citiesListComponent}
+                            </div>
                             <div className="change-input"></div>
-                            <input name="to-city" type="text" placeholder="Куда" required value={this.state.toCity} onChange={(e) => this.setState({toCity: e.target.value})}/>
+                            <div className='form-way-to'>
+                                <input name="toCity"
+                                       type="text"
+                                       placeholder="Куда"
+                                       required
+                                       autoComplete='off'
+                                       value={toCity}
+                                       onChange={this.onChangeInput}
+                                />
+                                {citiesListComponent}
+                            </div>
+
                         </div>
                     </fieldset>
                     <fieldset className="form-date-section">
@@ -68,6 +146,7 @@ export default class SearchTicketsForm extends Component {
                                 onChange={date => this.setState({startDate : date})}
                                 minDate={new Date()}
                                 placeholderText="ДД/ММ/ГГ"
+                                autoComplete='off'
                                 closeOnScroll={true}
                                 dateFormat="dd-MM-yyyy"
                                 name="startDate"
@@ -78,6 +157,7 @@ export default class SearchTicketsForm extends Component {
                                 onChange={date => this.setState({endDate : date})}
                                 minDate={new Date()}
                                 placeholderText="ДД/ММ/ГГ"
+                                autoComplete='off'
                                 closeOnScroll={true}
                                 dateFormat="dd-MM-yyyy"
                                 name="endDate"
