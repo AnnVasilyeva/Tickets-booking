@@ -144,6 +144,10 @@
     background-repeat: no-repeat;
     background-position: center;
 
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+
 }
 
 .social-link-youtube {
@@ -226,6 +230,10 @@
     display: block;
     width: 36px;
     height: 36px;
+
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 

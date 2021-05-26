@@ -4,10 +4,24 @@
   ],
 
   "rules": {
-    "jsx-a11y/rule-name": 2
+    "jsx-a11y/no-noninteractive-element-interactions": [
+      "error",
+      {
+        "handlers": [
+          "onClick",
+          "onMouseDown",
+          "onMouseUp",
+          "onKeyPress",
+          "onKeyDown",
+          "onKeyUp"
+        ]
+      }
+    ]
+    
   },
 
   "extends": [
     "plugin:jsx-a11y/recommended"
   ]
 }
+

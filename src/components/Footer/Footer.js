@@ -43,19 +43,19 @@ export default function Footer () {
                         <h3>Подписывайтесь на нас</h3>
                         <ul className="social-list">
                             <li className="social-item">
-                                <a href="https://www.youtube.com/" className="social-link social-link-youtube" aria-label='youtube' aria-hidden="true"/>
+                                <a href="https://www.youtube.com/" className="social-link social-link-youtube" aria-label='youtube' aria-hidden="true">youtube</a>
                             </li>
                             <li className="social-item">
-                                <a href="https://ru.linkedin.com" className="social-link social-link-in" aria-label='linkedin' aria-hidden="true"/>
+                                <a href="https://ru.linkedin.com" className="social-link social-link-in" aria-label='linkedin' aria-hidden="true">linkedin</a>
                             </li>
                             <li className="social-item">
-                                <a href="https://www.google.com/" className="social-link social-link-google" aria-label='google' aria-hidden="true"/>
+                                <a href="https://www.google.com/" className="social-link social-link-google" aria-label='google' aria-hidden="true">google</a>
                             </li>
                             <li className="social-item">
-                                <a href="https://www.facebook.com/" className="social-link social-link-facebook" aria-label='facebook' aria-hidden="true"/>
+                                <a href="https://www.facebook.com/" className="social-link social-link-facebook" aria-label='facebook' aria-hidden="true">facebook</a>
                             </li>
                             <li className="social-item">
-                                <a href="https://twitter.com/" className="social-link social-link-twitter" aria-label='twitter' aria-hidden="true"/>
+                                <a href="https://twitter.com/" className="social-link social-link-twitter" aria-label='twitter' aria-hidden="true">twitter</a>
                             </li>
                         </ul>
                     </div>
@@ -67,10 +67,10 @@ export default function Footer () {
                 <div className="container copyrights-container">
                     <div className="footer-logo">Лого</div>
                     <div className="up-btn">
-                        <a href="#header" className="up-link"/>
+                        <a href="#header" className="up-link">up-link</a>
                     </div>
                     <div className="copyrights">
-                        <a className="copyright" href="#">2018 web</a>
+                        <div className="copyright">2018 web</div>
                     </div>
                 </div>
             </section>
