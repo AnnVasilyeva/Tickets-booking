@@ -1,22 +1,26 @@
 
-import React, {useState} from 'react';
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+import React, {Component} from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import bookingService from "../../services/bookingService";
-import CityInput from './CityInput';
+import TestApi from '../../services/bookingService';
 
-export default function SearchTicketsForm () {
-    const service = new bookingService();
+export default class SearchTicketsForm extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            fromCity: {name: '', id: ''},  
+            toCity: {name: '', id: ''},
+            startDate: '',
+            endDate: '',
+            list: [],
+            isOpen: false,
+            focusInput: ''
+        }
+        this.server = new TestApi();
+    }
 
-    const [state, setState] = useState({
-        from_city_id: '',
-        to_city_id: '',
-        date_start: '',
-        date_end: '',
-    
-    });
-
-    const dateParser = (date) => {
+    dateParser(date) {
         let day;
         let month;
 
@@ -26,98 +30,163 @@ export default function SearchTicketsForm () {
             day = date.getDate();
         }
 
-        if(date.getMonth() < 10) {
-            month = `0${date.getMonth()}`;
+        if(date.getMonth()+1 < 10) {
+            month = `0${date.getMonth()+1}`;
         } else {
-            month = date.getMonth();
+            month = date.getMonth()+1;
         }
 
         return `${date.getFullYear()}-${month}-${day}`;
 
     }
 
-    const onSubmitForm = (e) => {
+   
+    onSubmitForm = (e) => {
         e.preventDefault();
-        console.log(state);
-        // this.props.onSearchTickets(this.state);
-        // setState({
-            // from_city_id: '',
-            // to_city_id: '',
-            // date_start: '',
-            // date_end: '',
-        // });
+    
+        const stateForSubmit = {
+            from_city_id: this.state.fromCity.id,
+            to_city_id: this.state.toCity.id,
+            date_start: this.dateParser(this.state.startDate),
+            date_end: this.dateParser(this.state.endDate),
+        }
+        console.log(stateForSubmit);
+
+        this.server.getRoutes(stateForSubmit)
+        .then(res => console.log(res))
+        .catch(error => console.log(error));
+
+        this.setState({
+            fromCity: {name: '', id: ''},
+            toCity: {name: '', id: ''},
+            startDate: '',
+            endDate: '',
+            isOpen: false,
+            list: [], 
+            focusInput: ''
+        })
+    }
+
+    onChangeValue = (e) => {
+        
+        if(e.target.value.length > 0) {
+            this.server.getCities(e.target.value)
+            .then(res => {this.setState({list: res, isOpen: true})})
+            .catch(error => console.log(error));
+        } else {
+            this.setState({isOpen: false}) 
+        }
+        
+        this.setState({[e.target.name]: {name: e.target.value}, focusInput: e.target.name});
+
+        if(this.state.list.length > 0) {
+            this.state.list.forEach(item => {
+                item.name === e.target.value && this.setState({[e.target.name]: {id: item._id}});
+            })
+        } 
+    }
+
+    onClickItem = (item) => {
+        this.setState({[this.state.focusInput]: {name: item.name, id: item._id},
+                         isOpen: false, focusInput: ''});
+    
+    }
+
+    onFocus = () => {
+        this.setState({list: [], isOpen: false, focusInput: ''})
+    }
+
     
 
-    }
-
-    const onChangeState = (inputName, id) => {
-        console.log(inputName, id);
-
-        return setState({[inputName]: id}); 
-    }
-                             
-
+    render () {
+        const {fromCity, toCity, startDate, endDate, isOpen, list, focusInput} = this.state;
 
         return (
 
-            <div className="form-search">
-                <form className="form-search-ticket" method="get" onSubmit={onSubmitForm}>
-                    <fieldset className="form-way-section">
-                        <legend>Направление</legend>
-                        <div className="form-way">
-                           
-                          <div className='form-way-from'>
-                          <CityInput onChangeState={onChangeState} 
-                                     placeholder="Откуда"
-                                     name="from_city_id" 
-                            />
-   
-                            </div> 
-                            <div className="change-input"></div>
-                            <div className='form-way-to'>
-                                <CityInput onChangeState={onChangeState} 
-                                            placeholder="Куда"
-                                            name="to_city_id" 
-                                />
-                               
-                            </div>
-
+        <div className="form-search">
+        <form className="form-search-ticket" method="get" onSubmit={this.onSubmitForm}>
+            <fieldset className="form-way-section">
+                <legend>Направление</legend>
+                <div className="form-way">
+                    <div className='form-way-from'>
+                        <input name="fromCity"
+                            type="text"
+                            placeholder="Откуда"
+                            autoComplete="off"
+                            required
+                            value={fromCity.name}
+                            onChange={this.onChangeValue}
+                            onFocus={this.onFocus}
+                            
+                        />
+                        {isOpen && focusInput === 'fromCity' && 
+                            <ul className='autocomplete'>
+                                {list.map(item => <li key={item._id}
+                                            onClick={() => this.onClickItem(item)}
+                                            onKeyPress={() => this.onClickItem(item)}
+                                        >{item.name}</li>
+                                    )}
+                            </ul>
+                        }
                         </div>
-                    </fieldset>
-                    <fieldset className="form-date-section">
-                        <legend>Дата</legend>
-                        <div className="form-date">
-                            <DatePicker
-                                selected={state.date_start}
-                                onChange={date => {console.log(date);
-                                    setState({date_start: date})}}
-                                minDate={new Date()}
-                                placeholderText="ДД/ММ/ГГ"
-                                autoComplete='off'
-                                closeOnScroll={true}
-                                dateFormat="dd-MM-yyyy"
-                                name="date_start"
-                                showDisabledMonthNavigation
-                            />
-                            <DatePicker
-                                selected={state.date_end}
-                                onChange={date => {console.log(date);
-                                    setState({date_end: date})}}
-                                minDate={new Date()}
-                                placeholderText="ДД/ММ/ГГ"
-                                autoComplete='off'
-                                closeOnScroll={true}
-                                dateFormat="dd-MM-yyyy"
-                                name="date_end"
-                                showDisabledMonthNavigation
-                            />
-                        </div>
-                    </fieldset>
-                    <button type="submit" className="form-search-btn">Найти билет</button>
-                </form>
-            </div>
+                    <div className="change-input"></div>
+                    <div className='form-way-to'>
+                        <input name="toCity" 
+                                type="text" 
+                                placeholder="Куда" 
+                                autoComplete="off" 
+                                required 
+                                value={toCity.name} 
+                                onChange={this.onChangeValue}
+                                onFocus={this.onFocus}
+                                
+                        />
+                        {isOpen && focusInput === 'toCity' && 
+                            <ul className='autocomplete'>
+                                {list.map(item => <li key={item._id}
+                                            onClick={() => this.onClickItem(item)}
+                                            onKeyPress={() => this.onClickItem(item)}
+                                        >{item.name}</li>
+                                    )}
+                            </ul>
+                        }
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset className="form-date-section">
+                <legend>Дата</legend>
+                <div className="form-date">
+                        <DatePicker
+                            selected={startDate}
+                            onChange={date => this.setState({startDate: date})}
+                            onFocus={this.onFocus}
+                            minDate={new Date()}
+                            placeholderText="ДД/ММ/ГГ"
+                            closeOnScroll={true}
+                            dateFormat="dd-MM-yyyy"
+                            name="startDate"
+                            autoComplete="off" 
+                            showDisabledMonthNavigation
+                        />
+                        <DatePicker
+                            selected={endDate}
+                            onChange={date => this.setState({endDate: date})}
+                            onFocus={this.onFocus}
+                            minDate={new Date()}
+                            placeholderText="ДД/ММ/ГГ"
+                            closeOnScroll={true}
+                            dateFormat="dd-MM-yyyy"
+                            name="endDate"
+                            autoComplete="off" 
+                            showDisabledMonthNavigation
+                        />
+                </div>
+            </fieldset>
+            <button type="submit" className="form-search-btn">Найти билет</button>
+        </form>
+        </div>
 
-        )
+)
 }
 
-
+}
