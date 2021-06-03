@@ -69,7 +69,7 @@ export default class TestApi {
     getRoutes(body) {
         const {from_city_id, to_city_id, date_start, date_end} = body;
 
-        return this.getResource(`/routes?from_city_id=${from_city_id}&to_city_id=${to_city_id}&date_start=${date_start}&date_end=${date_end}`);
+        return this.getResource(`/routes/?from_city_id=${from_city_id}&to_city_id=${to_city_id}&date_start=${date_start}&date_end=${date_end}`);
 
     }
 

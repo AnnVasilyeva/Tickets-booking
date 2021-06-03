@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import TestApi from '../../services/bookingService';
+import './SearchTicketsForm.css';
 
 export default class SearchTicketsForm extends Component {
     constructor(props) {
@@ -17,6 +18,7 @@ export default class SearchTicketsForm extends Component {
             isOpen: false,
             focusInput: ''
         }
+        this.changePage = props.changePage;
         this.server = new TestApi();
     }
 
@@ -47,8 +49,8 @@ export default class SearchTicketsForm extends Component {
         const stateForSubmit = {
             from_city_id: this.state.fromCity.id,
             to_city_id: this.state.toCity.id,
-            date_start: this.dateParser(this.state.startDate),
-            date_end: this.dateParser(this.state.endDate),
+            date_start: this.state.startDate ? this.dateParser(this.state.startDate) : '',
+            date_end: this.state.endDate ? this.dateParser(this.state.endDate) : '',
         }
         console.log(stateForSubmit);
 
@@ -65,6 +67,8 @@ export default class SearchTicketsForm extends Component {
             list: [], 
             focusInput: ''
         })
+
+        // this.changePage();
     }
 
     onChangeValue = (e) => {
@@ -105,6 +109,7 @@ export default class SearchTicketsForm extends Component {
 
         <div className="form-search">
         <form className="form-search-ticket" method="get" onSubmit={this.onSubmitForm}>
+            <div className='form-wrapper'>
             <fieldset className="form-way-section">
                 <legend>Направление</legend>
                 <div className="form-way">
@@ -168,6 +173,7 @@ export default class SearchTicketsForm extends Component {
                             autoComplete="off" 
                             showDisabledMonthNavigation
                         />
+                        <div className='empty-wrapper'></div>
                         <DatePicker
                             selected={endDate}
                             onChange={date => this.setState({endDate: date})}
@@ -182,6 +188,7 @@ export default class SearchTicketsForm extends Component {
                         />
                 </div>
             </fieldset>
+            </div>
             <button type="submit" className="form-search-btn">Найти билет</button>
         </form>
         </div>

@@ -1,0 +1,180 @@
+.form-search {
+    width: 730px;
+    background-color: rgba(41, 41, 41, 0.8);
+    padding: 80px 22px 52px;
+    box-sizing: border-box;
+}
+
+.order-page .form-search {
+    width: 1490px;
+    height: 350px;
+    padding: 28px 40px 76px;
+    margin: 0 auto;
+    
+}
+
+fieldset {
+    border: none;
+    padding: 0;
+}
+
+
+.form-search-ticket {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.order-page .form-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.form-search-ticket legend {
+    font-size: 30px;
+    color: #fff;
+    text-align: left;
+    padding: 0;
+}
+
+.form-way-section {
+    margin-bottom: 60px;
+}
+
+
+.order-page .form-way-section {
+    margin: 0;
+}
+
+
+.form-way {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+
+}
+
+.form-way input {
+    width: 320px;
+    background-image: url('formImage/search.png');
+    background-position: right 15px center;
+    background-repeat: no-repeat;
+    background-size: 21px 30px;
+    box-sizing: border-box;
+    
+
+}
+
+.order-page .change-input {
+    margin: 0 7px;
+}
+
+
+.autocomplete {
+    list-style: none;
+    padding: 14px 22px 15px 28px;
+    margin-top: 5px;
+    color: #292929;
+    text-transform: uppercase;
+    font-size: 18px;
+    line-height: 21px;
+    font-weight: 400;
+    text-align: left;
+    background-color: #F5F4F6;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 3px;
+    width: 320px;
+    position: absolute;
+    z-index: 10;
+    box-sizing: border-box;
+}
+
+
+.autocomplete li {
+    cursor: pointer;
+}
+
+.autocomplete li:not(:last-of-type) {
+    margin-bottom: 8px;
+
+}
+
+.form-date .empty-wrapper {
+    display: none;
+}
+
+.order-page .form-date .empty-wrapper {
+    display: block;
+    width: 35px;
+    height: 60px;
+    
+}
+
+
+.form-search-ticket input {
+    padding: 18px 0 21px 19px;
+    border-radius: 5px;
+    width: 325px;
+    height: 60px;
+    box-sizing: border-box;
+}
+
+.change-input {
+    background-image: url('formImage/ic_cached_white_48dp.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 24px;
+    width: 24px;
+    height: 24px;
+}
+
+
+.form-date {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.form-date input {
+    width: 320px;
+    box-sizing: border-box;
+    background-image: url('formImage/date.png');
+    background-position: right 15px center;
+    background-repeat: no-repeat;
+}
+
+
+.form-search-btn {
+    width: 320px;
+    background-color: #FFA800;
+    border: 1px solid #FFA800;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 16px 0;
+    font-size: 24px;
+    text-transform: uppercase;
+    color: #292929;
+    align-self: flex-end;
+    margin-top: 92px;
+    cursor: pointer;
+}
+
+.order-page .form-search-btn {
+    margin-top: 47px;
+    
+    
+}
+
+.form-search-btn:hover {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.form-search-btn:focus {
+    background-color: transparent;
+    color: #FFA800;
+    border-color: #FFA800;
+
+}
