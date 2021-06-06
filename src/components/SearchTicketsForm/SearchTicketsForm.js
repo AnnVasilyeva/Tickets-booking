@@ -18,7 +18,7 @@ export default class SearchTicketsForm extends Component {
             isOpen: false,
             focusInput: ''
         }
-        this.changePage = props.changePage;
+        
         this.server = new TestApi();
     }
 
@@ -58,6 +58,8 @@ export default class SearchTicketsForm extends Component {
         .then(res => console.log(res))
         .catch(error => console.log(error));
 
+        this.props.routerChange();
+
         this.setState({
             fromCity: {name: '', id: ''},
             toCity: {name: '', id: ''},
@@ -68,7 +70,7 @@ export default class SearchTicketsForm extends Component {
             focusInput: ''
         })
 
-        // this.changePage();
+        
     }
 
     onChangeValue = (e) => {
@@ -103,6 +105,7 @@ export default class SearchTicketsForm extends Component {
     
 
     render () {
+        
         const {fromCity, toCity, startDate, endDate, isOpen, list, focusInput} = this.state;
 
         return (

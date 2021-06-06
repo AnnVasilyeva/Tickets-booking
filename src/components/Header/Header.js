@@ -4,13 +4,20 @@ import SearchTicketsForm from "../SearchTicketsForm/SearchTicketsForm";
 import Progressbar from './Progressbar';
 
 
-export default function Header ({isOrderPage, changePage}) {
+export default function Header (props) {
+    
     const mainPage = 'header';
     const orderPage = ' order-page';
 
+    const routerChange = () => {
+        console.log(props.history);
+        props.history.push('/routers');
+    }
+
+
     return (
 
-    <header id="header" className={isOrderPage ? mainPage + orderPage : mainPage}>
+    <header id="header" className={props.isOrderPage ? mainPage + orderPage : mainPage}>
         <div className="header-logo">Лого</div>
         <nav className="header-menu">
             <ul className="menu-list">
@@ -25,10 +32,10 @@ export default function Header ({isOrderPage, changePage}) {
                 <span>Вся жизнь -</span>
                 <span>путешествие!</span>
             </h1>
-            <SearchTicketsForm changePage={changePage}/>
+            <SearchTicketsForm routerChange={routerChange}/>
         </div>
     <div className="header-progressbar">
-        {isOrderPage && <Progressbar/>}
+        {props.isOrderPage && <Progressbar/>}
     </div>
     </header>
 
