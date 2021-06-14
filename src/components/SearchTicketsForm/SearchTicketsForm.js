@@ -55,10 +55,10 @@ export default class SearchTicketsForm extends Component {
         console.log(stateForSubmit);
 
         this.server.getRoutes(stateForSubmit)
-        .then(res => console.log(res))
+        .then(res => this.props.addRoutes(res))
         .catch(error => console.log(error));
 
-        this.props.routerChange();
+        // this.props.routerChange();
 
         this.setState({
             fromCity: {name: '', id: ''},

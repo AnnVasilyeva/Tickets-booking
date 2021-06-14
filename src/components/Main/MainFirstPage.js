@@ -21,15 +21,14 @@ export default function MainFirstPage () {
         }
     ];
 
-
     // const ReviewList = () => {
     //     reviewCards.forEach(item => {
     //         return <ReviewItem item={item} keywords={item.id}/>
     //     })
     // }
 
-    return (
-        <>
+    const InfoSection = () => {
+        return (
             <section className="info-section" id="info">
                 <div className="container">
                     <h2 className="info-title">О нас</h2>
@@ -49,7 +48,11 @@ export default function MainFirstPage () {
                     </div>
                 </div>
             </section>
+        )
+    }
 
+    const FeaturesSection = () => {
+        return (
             <section className="features-section" id="features">
                 <div className="container">
                     <div className="features-top">
@@ -63,7 +66,11 @@ export default function MainFirstPage () {
                     </div>
                 </div>
             </section>
+        )
+    }
 
+    const ReviewsSection = () => {
+        return(
             <section className="reviews-section" id="reviews">
                 <div className="container">
                     <h2 className="reviews-title">Отзывы</h2>
@@ -84,7 +91,14 @@ export default function MainFirstPage () {
                     </div>
                 </div>
             </section>
+        )
+    }
 
+    return (
+        <>
+        <InfoSection/>
+        <FeaturesSection/>
+        <ReviewsSection/>
         </>
     )
 
