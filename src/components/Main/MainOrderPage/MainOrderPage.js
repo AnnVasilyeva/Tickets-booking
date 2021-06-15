@@ -1,7 +1,7 @@
 import React from 'react';
 import './mainOrderPage.css';
-import FilterTicketsForm from './FilterTicketsForm/FilterTicketsForm';
-import Ticket from './Ticket/Ticket';
+import FilterTicketsForm from '../FilterTicketsForm/FilterTicketsForm';
+import Ticket from '../Ticket/Ticket';
 
 export default function MainOrderPage ({routes}) {
 	

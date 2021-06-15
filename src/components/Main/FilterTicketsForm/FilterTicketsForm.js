@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import './filterTicketsForm.css';
 
 export default class FilterTicketsForm extends Component {
     constructor(props) {
@@ -8,9 +9,7 @@ export default class FilterTicketsForm extends Component {
         this.state = {
             startDate: '',
             endDate: '',
-        }
-
-        
+        }    
     }
 
     render () {
@@ -21,7 +20,7 @@ export default class FilterTicketsForm extends Component {
 				<form className="date-filter-form">
 					<fieldset className="form-date-section from-date">
 				    		<legend>Дата поездки</legend>
-				    		<div className="form-date">		
+				    		<div className="form-input_date">		
 								<DatePicker
                             selected={startDate}
                             onChange={date => console.log(date)}
@@ -38,7 +37,7 @@ export default class FilterTicketsForm extends Component {
 					
 					<fieldset className="form-date-section to-date">
 				    		<legend>Дата возвращения</legend>
-				    		<div className="form-date">
+				    		<div className="form-input_date">
 								<DatePicker
                             selected={endDate}
                             onChange={date => console.log(date)}

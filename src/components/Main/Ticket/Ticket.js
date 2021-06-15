@@ -1,6 +1,10 @@
 import React from 'react';
 
 export default function Ticket ({item}) {
+    console.log(item);
+
+    const {have_first_class, have_second_class, have_third_class, have_fourth_class, have_wifi, have_air_conditioning, is_express, min_price, arrival, departure, avaliable_seats_info} = item;
+
     // constructor (props, {item}) {
 	// 	super(props);
     //     this.item = item;
@@ -16,33 +20,32 @@ export default function Ticket ({item}) {
     //         arrival: item.arrival,
     //         departure: item.departure,
     //         total_avaliable_seats: item.total_avaliable_seats
-
-
 		// }
-        // this.seatsList = [
+
+        // const seatsList = [
         //     {
-        //         isHave: this.state.have_first_class,
+        //         isHave: departure.have_first_class,
         //         name: 'Люкс',
-        //         price: price_info.first.bottom_price,
-        //         count: avaliable_seats_info.first
+        //         price: departure.price_info.first.bottom_price,
+        //         count: departure.avaliable_seats_info.first
         //     },
         //     {
-        //         isHave: this.state.have_second_class,
+        //         isHave: departure.have_second_class,
         //         name: 'Купе',
-        //         price: price_info.second.bottom_price,
-        //         count: avaliable_seats_info.second
+        //         price: departure.price_info.second.bottom_price,
+        //         count: departure.avaliable_seats_info.second
         //     },
         //     {
-        //         isHave: this.state.have_third_class,
+        //         isHave: departure.have_third_class,
         //         name: 'Плацкарт',
-        //         price: price_info.third.bottom_price,
-        //         count: avaliable_seats_info.third
+        //         price: departure.price_info.third.bottom_price,
+        //         count: departure.avaliable_seats_info.third
         //     },
         //     {
-        //         isHave: this.state.have_fourth_class,
+        //         isHave: departure.have_fourth_class,
         //         name: 'Сидячий',
-        //         price: price_info.fourth.bottom_price,
-        //         count: avaliable_seats_info.fourth
+        //         price: departure.price_info.fourth.bottom_price,
+        //         count: departure.avaliable_seats_info.fourth
         //     }
         // ];
     
@@ -67,9 +70,30 @@ export default function Ticket ({item}) {
 
 	// }
 
-    
+    const ucFirst = (str) => {
+        if (!str) return str;
+      
+        return str[0].toUpperCase() + str.slice(1);
+    }
 
-    console.log('add ticket', item);
+  
+    const formattedDuration = (timeSec) => {
+        const hours = Math.floor(timeSec / 60 / 60);
+        const minutes = Math.floor(timeSec / 60) - (hours * 60);
+
+        return [hours.toString().padStart(2, '0'),
+        minutes.toString().padStart(2, '0')].join(':');
+
+    }  
+
+    const formattedDatetime = (timeMs) => {
+        const minutes = Math.floor((timeMs / (1000 * 60)) % 60),
+            hours = Math.floor((timeMs / (1000 * 60 * 60)) % 24);
+        
+      return `${(hours < 10) ? "0" + hours : hours}:${(minutes < 10) ? "0" + minutes : minutes}`
+    }
+
+    // console.log(departure);
 
     return (
         <li className="found-routes-item">
@@ -77,60 +101,63 @@ export default function Ticket ({item}) {
                 <div className="train-/images">
                     <img src="/images/train.png" alt="train"/>
                 </div>
-                <div className="train-number">train.name</div>
+                <div className="train-number">{departure.train.name}</div>
                 <div className="train-departure-city">
-                    <div className="departure-start-city">
+                    {/* <div className="departure-start-city">
                         <span>Адлер</span>
                         <img src="/images/arrow-gray.png" alt="arrow"/>
-                    </div>
+                    </div> */}
                     <div className="departure-select-city">
-                        <span>from.city</span>
+                        <span>{ucFirst(departure.from.city.name)}</span>
                         <img src="/images/arrow-black.png" alt="arrow"/>
                     </div>
                 </div>
-                <div className="train-arrival-city">to.city</div>
+                <div className="train-arrival-city">{ucFirst(departure.to.city.name)}</div>
             </header>
             
             <main>
                 <section className="section-train-info">
                     <div className="train-departure">
-                        <span className="departure-from-datetime datetime">from.datetime</span>
-                        <span className="departure-from-city">from.city.name</span>
-                        <span className="departure-from-railway_station railway_station">from.railway_station_name</span>
+                        <span className="departure-from-datetime datetime">{formattedDatetime(departure.from.datetime)}</span>
+                        <span className="departure-from-city">{ucFirst(departure.from.city.name)}</span>
+                        <span className="departure-from-railway_station railway_station">{departure.from.railway_station_name}</span>
                     </div>
                     <div className="duration">
-                        <span>duration</span>
+                        <span>{formattedDuration(departure.duration)}</span>
                         <div className="departure-arrow">
                             <img src="/images/arrow-gold-right.png" alt="arrow"/>
                         </div>
                     </div>
                     <div className="train-arrival">
-                        <span className="arrival-from-datetime datetime">to.datetime</span>
-                        <span className="arrival-from-city">to.city.name</span>
-                        <span className="arrival-from-railway_station railway_station">to.railway_station_name</span>
+                        <span className="arrival-from-datetime datetime">{formattedDatetime(departure.to.datetime)}</span>
+                        <span className="arrival-from-city">{ucFirst(departure.to.city.name)}</span>
+                        <span className="arrival-from-railway_station railway_station">{departure.to.railway_station_name}</span>
                     </div>
                     
                 </section>
-                
-                <section className="section-train-info">
+
+                {arrival && <section className="section-train-info">
                     <div className="train-arrival">
-                        <span className="arrival-from-datetime datetime">00:10</span>
-                        <span className="arrival-from-city">Москва</span>
-                        <span className="arrival-from-railway_station railway_station">Курский вокзал</span>
+                        <span className="arrival-from-datetime datetime">{formattedDatetime(arrival.to.datetime)}</span>
+                        <span className="arrival-from-city">{ucFirst(arrival.to.city.name)}</span>
+                        <span className="arrival-from-railway_station railway_station">{arrival.to.railway_station_name}</span>
                     </div>
                     <div className="duration">
-                        <span>9:42</span>
+                        <span>{formattedDuration(arrival.duration)}</span>
                         <div className="arrival-arrow">
                             <img src="/images/arrow-gold-left.png" alt="arrow"/>
                         </div>
                     </div>
                     <div className="train-departure">
-                        <span className="departure-from-datetime datetime">09:52</span>
-                        <span className="departure-from-city">Санкт-Петербург</span>
-                        <span className="departure-from-railway_station railway_station">Ладожский вокзал</span>
+                        <span className="departure-from-datetime datetime">{formattedDatetime(arrival.from.datetime)}</span>
+                        <span className="departure-from-city">{ucFirst(arrival.from.city.name)}</span>
+                        <span className="departure-from-railway_station railway_station">{arrival.from.railway_station_name}</span>
                     </div>
                     
                 </section>
+                }
+                
+                
                 </main>
                 <footer>
                 <section className="railway-carriage">
@@ -147,8 +174,8 @@ export default function Ticket ({item}) {
                                 </div>
                                 </div>
                             </li>
-                        })} */}
-                        
+                        })}
+                         */}
                         {/* <li className="railway-carriage-item">
                             <div className="railway-carriage_class">Плацкарт</div>
                             <div className="railway-carriage-seats_info">52</div>

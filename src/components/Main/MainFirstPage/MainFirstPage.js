@@ -1,8 +1,8 @@
 import React from 'react';
 import './mainFirstPage.css';
-import ReviewItem from "./ReviewItem";
-import avatar1 from './mainImage/review1.png';
-import avatar2 from './mainImage/review2.png';
+import ReviewItem from "../ReviewItem";
+import avatar1 from '../mainImage/review1.png';
+import avatar2 from '../mainImage/review2.png';
 
 
 export default function MainFirstPage () {

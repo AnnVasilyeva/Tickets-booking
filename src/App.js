@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import './App.css';
 import Header from "./components/Header/Header";
-import MainFirstPage from "./components/Main/MainFirstPage";
-import MainOrderPage from "./components/Main/MainOrderPage";
+import MainFirstPage from "./components/Main/MainFirstPage/MainFirstPage";
+import MainOrderPage from "./components/Main/MainOrderPage/MainOrderPage";
 import Footer from "./components/Footer/Footer";
 
 function App() {

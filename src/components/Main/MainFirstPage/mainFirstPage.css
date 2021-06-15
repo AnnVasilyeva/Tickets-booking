@@ -51,7 +51,7 @@
 
 .features-section {
     background-color: #000;
-    background-image: url('mainImage/bg-main copy.png');
+    background-image: url('../mainImage/bg-main.png');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -136,18 +136,18 @@
 }
 
 .features-order::before {
-    background: url('mainImage/order.png') no-repeat center center;
+    background: url('../mainImage/order.png') no-repeat center center;
 
 }
 
 
 .features-office::before {
-    background: url('mainImage/office.png') no-repeat center center;
+    background: url('../mainImage/office.png') no-repeat center center;
 }
 
 
 .features-world::before {
-    background: url('mainImage/world.png') no-repeat center center;
+    background: url('../mainImage/world.png') no-repeat center center;
 }
 
 .reviews-section {

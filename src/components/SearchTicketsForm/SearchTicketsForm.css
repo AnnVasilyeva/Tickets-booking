@@ -102,11 +102,11 @@ fieldset {
 
 }
 
-.form-date .empty-wrapper {
+.form-input_date .empty-wrapper {
     display: none;
 }
 
-.order-page .form-date .empty-wrapper {
+.order-page .form-input_date .empty-wrapper {
     display: block;
     width: 35px;
     height: 60px;
@@ -132,13 +132,13 @@ fieldset {
 }
 
 
-.form-date {
+.form-input_date {
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
 }
 
-.form-date input {
+.form-input_date input {
     width: 320px;
     box-sizing: border-box;
     background-image: url('formImage/date.png');

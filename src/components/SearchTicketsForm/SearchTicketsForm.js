@@ -163,7 +163,7 @@ export default class SearchTicketsForm extends Component {
             </fieldset>
             <fieldset className="form-date-section">
                 <legend>Дата</legend>
-                <div className="form-date">
+                <div className="form-input_date">
                         <DatePicker
                             selected={startDate}
                             onChange={date => this.setState({startDate: date})}
