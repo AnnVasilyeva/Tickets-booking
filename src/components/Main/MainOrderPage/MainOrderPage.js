@@ -1,40 +1,31 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './mainOrderPage.css';
 import FilterTicketsForm from '../FilterTicketsForm/FilterTicketsForm';
 import Ticket from '../Ticket/Ticket';
-
-export default function MainOrderPage ({routes}) {
-	
-	// constructor (props) {
-	// 	super(props);
-	// 	this.state = {
-	// 		routes: this.props.routes,
-	// 		have_first_class: false,
-	// 		have_second_class: false,
-	// 		have_third_class: false,
-	// 		have_fourth_class: false,
-	// 		have_wifi: false,
-	// 		have_air_conditioning: false,
-	// 		is_express: false,
-	// 		min_price: false,
-	// 		arrival: false,
-	// 		departure: false,
-	// 		total_avaliable_seats: false,
-
-	// 	}
-	// }
-	
-	
-		
-		// const {have_first_class, have_second_class, have_third_class, have_fourth_class, have_wifi, have_air_conditioning, is_express, min_price, arrival, departure} = item;
-
-		// const {from, to, price_info, train, duration, avaliable_seats_info} = departure;
-
-	
+import LastTicket from '../LastTicket/LastTicket';
+import PopupWindow from '../../PopupWindow/PopupWindow';
 
 
+export default function MainOrderPage ({routes, lastRoutes}) {
+	// При выборе Москва-Питер выдает total_count: 13, но в массиве всего 5 билетов. Как проверять сортировку?
 
-	
+	const [sortIndex, setSortIndex] = useState(5);
+	const sortCountList = [5, 10, 20];
+	const [isPopup, setIsPopup] = useState(false);
+
+	const getSortRoutesCount = (index) => {
+		setSortIndex(index);
+	}
+
+	const SortCountItem = ({item, onClick}) => {
+		return(
+			<li className={sortIndex === item ? `limit selected` : 'limit'}
+			onClick={() => onClick(item)}
+			aria-hidden="true">{item}</li>
+		)	
+	}
+
+
 	return (
 		<div className="container-order-page">
 			<aside className="order-page-sidebar">
@@ -43,85 +34,11 @@ export default function MainOrderPage ({routes}) {
 				<section className="sidebar-last-tickets">
 					<h2>последние билеты</h2>
 					<ul className="last-tickets-list">
-						
-						<li className="last-tickets-item">
-						
-						<div className="tickets-item-city">
-							<div className="ticket-from-city">
-								<span className="city">Санкт-Петербург</span>
-								<span className="city-trainstation">Курский вокзал</span>
-							</div>
-							<div className="ticket-to-city ticket-to-city-right">
-								<span className="city">Самара</span>
-								<span className="city-trainstation">Московский вокзал</span>
-							</div>
-						</div>
-						
-						<div className="tickets-item-features">
-							<ul className="ticket-features-list">
-								<li className="ticket-features-icon">
-									<img src="/images/icon-wifi.png" alt="icon-wifi"/>			
-								</li>
-								<li className="ticket-features-icon">
-									<img src="/images/icon-express.png" alt="icon-express"/>
-								</li>
-								<li className="ticket-features-icon">
-									<div className="icon-cup-wrapper">
-										<img src="/images/icon-cup.png" alt="icon-cup"/>
-										<img src="/images/icon-plate.png" alt="icon-plate"/>
-									</div>
-								</li>
-							</ul>
-							<div className="ticket-cost">
-								<span>от</span>
-								<span className="cost">2 500</span>
-								<div className="icon-value">
-									<img src="/images/icon-value.png" alt="russian ruble"/>
-								</div>
-							</div>
-						</div>
-							
-					</li>
-						
-						<li className="last-tickets-item">
-						
-							<div className="tickets-item-city">
-								<div className="ticket-from-city">
-									<span className="city">Санкт-Петербург</span>
-									<span className="city-trainstation">Курский вокзал</span>
-								</div>
-								<div className="ticket-to-city ticket-to-city-right">
-									<span className="city">Самара</span>
-									<span className="city-trainstation">Московский вокзал</span>
-								</div>
-							</div>
-							
-							<div className="tickets-item-features">
-								<ul className="ticket-features-list">
-									<li className="ticket-features-icon">
-										<img src="/images/icon-wifi.png" alt="icon-wifi"/>							
-									</li>
-									<li className="ticket-features-icon">
-										<img src="/images/icon-express.png" alt="icon-express"/>
-									</li>
-									<li className="ticket-features-icon">
-										<div className="icon-cup-wrapper">
-											<img src="/images/icon-cup.png" alt="icon-cup"/>
-											<img src="/images/icon-plate.png" alt="icon-plate"/>
-										</div>
-									</li>
-								</ul>
-								<div className="ticket-cost">
-									<span>от</span>
-									<span className="cost">2 500</span>
-									<div className="icon-value">
-										<img src="/images/icon-value.png" alt="russian ruble"/>
-									</div>
-								</div>
-							</div>
-							
-						</li>
-		
+						{lastRoutes && lastRoutes.map((item,index) => {
+							if(index <= 2) {
+								return <LastTicket key={index} item={item}/>
+							}
+						})}						
 					</ul>
 				</section>
 			</aside>
@@ -144,20 +61,30 @@ export default function MainOrderPage ({routes}) {
 					<div className="routes-limit">
 						<span>показывать по:</span>
 						<ul className="routes-limit-list">
-							<li className="limit-five selected">5</li>
-							<li className="limit-ten">10</li>
-							<li className="limit-twenty">20</li>
-						</ul>
-						
+							{sortCountList.map((item, index) => 
+							<SortCountItem key={index} item={item} onClick={getSortRoutesCount}/>)}
+						</ul>					
 					</div>
 				</header>
+
+				{
+					routes.items.length > 0 ? 
+					<ul className="found-routes-list">
+						{routes.items.map((item, index) => {
+							if(index < sortIndex) {
+								return <Ticket item={item} key={index}/>
+							}	
+						})}
+					</ul>
+					: <PopupWindow/>
+				}
+					
+					
+					
 				
-				<ul className="found-routes-list">
-				{routes.items && routes.items.map((item, index) => {
-					console.log(item);
-				 return <Ticket item={item} key={index}/>})}
 				
-				</ul>
+				
+				
 				
 				{/* <div className="found-routes-list-pagination">
 					<a href="#">0</a>
@@ -167,11 +94,15 @@ export default function MainOrderPage ({routes}) {
 					<a href="#"></a>
 				</div> */}
 			</section>
-		</div>
-		
-		
+		</div>	
 			)
 }
+
+{/* для иконки с чашкой */}
+										{/* <div className="icon-cup-wrapper">
+											<img src="/images/icon-cup.png" alt="icon-cup"/>
+											<img src="/images/icon-plate.png" alt="icon-plate"/>
+										</div> */}	
 	
 	
     

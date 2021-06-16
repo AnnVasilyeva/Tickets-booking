@@ -3,7 +3,7 @@
 import React, {Component} from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import TestApi from '../../services/bookingService';
+import BookingService from '../../services/bookingService';
 import './SearchTicketsForm.css';
 
 export default class SearchTicketsForm extends Component {
@@ -19,7 +19,7 @@ export default class SearchTicketsForm extends Component {
             focusInput: ''
         }
         
-        this.server = new TestApi();
+        this.server = new BookingService();
     }
 
     dateParser(date) {
@@ -58,7 +58,6 @@ export default class SearchTicketsForm extends Component {
         .then(res => this.props.addRoutes(res))
         .catch(error => console.log(error));
 
-        // this.props.routerChange();
 
         this.setState({
             fromCity: {name: '', id: ''},

@@ -1,0 +1,177 @@
+.found-routes-item {
+	width: 100%;
+	height: auto;
+	background-color: #fff;
+	border: 1px solid #C4C4C4;
+	box-sizing: border-box;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 53px;
+	
+}
+
+.found-routes-item:last-of-type {
+	margin-bottom: 0;
+}
+
+
+.found-routes-item header {
+	width: 197px;
+	background-color: #E4E0E9;
+	padding-top: 57px;
+	padding-bottom: 31px;
+
+}
+
+.train-image {
+	width: 86px;
+	height: 86px;
+	margin: 58px auto 17px;
+	
+
+}
+
+.train-number {
+	color: #3E3C41;
+	font-size: 24px;
+	font-weight: 700;
+	text-align: center;
+	margin-bottom: 15px;
+	margin-top: 17px;
+}
+
+.train-arrival-city, .train-departure-city {
+	margin-left: 26px;
+	color: #000;
+	text-align: left;
+}
+
+.departure-start-city {
+	color: #928F94;
+}
+
+.found-routes-item main {
+	width: 479px;
+	background-color: #fff;
+	padding: 57px 36px 0 39px;
+	border-right: 1px dashed #E5E5E5;
+	box-sizing: border-box;
+
+}
+
+.section-train-info {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 63px;
+}
+
+
+.train-departure span, .train-arrival span {
+	display: block;
+	
+}
+
+.datetime {
+	color: #2D2B2F;
+	font-size: 24px;
+	font-weight: 700;
+}
+
+.railway_station {
+	color: #928F94;
+
+}
+
+.duration {
+	width: 47px;
+	text-align: center;
+}
+
+.duration span {
+	color: #C4C4C4;
+	font-size: 18px;
+	font-weight: 400;
+	margin-bottom: 7px;
+}
+
+.found-routes-item footer {
+	display: flex;
+	flex-direction: column;
+	width: 283px;
+	box-sizing: border-box;
+	padding: 37px 22px 23px 27px;
+}
+
+.railway-carriage ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.railway-carriage-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 16px;
+	margin-bottom: 24px;
+}
+
+.railway-carriage-price_info {
+	display: flex;
+	align-items: center;
+}
+
+.railway-carriage-price_info .cost {
+	color: #2D2B2F;
+	font-weight: 700;
+	font-size: 24px;
+}
+
+.railway-carriage-price_info .icon-value img {
+	width: 16px;
+	height: 19px;
+}
+
+.railway-carriage_class {
+	min-width: 86px;
+	font-weight: 400;
+	color: #3E3C41;
+}
+
+.railway-carriage-seats_info {
+	font-weight: 500;
+	color: #FFA800;
+}
+
+.railway-carriage-features .ticket-features-list {
+	justify-content: flex-end;
+	margin-bottom: 20px;
+}
+
+.btn-seat-selection {
+	text-align: center;
+	color: #fff;
+	font-size: 24px;
+	font-weight: 700;
+	background-color: #FFA800;
+	border-radius: 5px;
+	padding: 6px 13px 9px 9px;
+	cursor: pointer;
+	box-sizing: border-box;	
+}
+
+
+.btn-seat-selection:hover {
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	box-sizing: border-box;	
+}
+
+
+.btn-seat-selection:active {
+	color: #FFA800;
+	background-color: #fff;
+	border: 1px solid #FFA800;
+	box-sizing: border-box;	
+	box-shadow: none;
+}

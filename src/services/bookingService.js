@@ -1,4 +1,4 @@
-export default class TestApi {
+export default class BookingService {
     constructor() {
         this._apiBase = 'https://fe-diplom.herokuapp.com';
 

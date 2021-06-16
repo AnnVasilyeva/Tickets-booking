@@ -1,25 +1,29 @@
 import React, {useState} from 'react';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import './App.css';
+import BookingService from './services/bookingService';
 import Header from "./components/Header/Header";
 import MainFirstPage from "./components/Main/MainFirstPage/MainFirstPage";
 import MainOrderPage from "./components/Main/MainOrderPage/MainOrderPage";
 import Footer from "./components/Footer/Footer";
 
 function App() {
+
+  const service = new BookingService();
   const [routes, setRoutes] = useState({});
+  const [lastRoutes, setLastRoutes] = useState();
 
   const getRoutesObject = (newRoutes, history) => {
-    console.log('add list')
     setRoutes({routes: newRoutes});
+
+    service.getLastRoutes()
+      .then(res => setLastRoutes(res))
+      .catch(error => console.log(error));
+
     history.push('/routes');
   };
     
   
-  // const addRoutes = (history) => {
-  //   console.log('add /routes')
-  //   history.push('/routes');
-  // }
 
   return (
     
@@ -32,7 +36,7 @@ function App() {
       <main>
         <Switch>
             <Route exact path='/' component={MainFirstPage}/>
-            <Route path='/routes' render={props => <MainOrderPage {...props} routes={routes.routes}/>}/>
+            <Route path='/routes' render={props => <MainOrderPage {...props} routes={routes.routes} lastRoutes={lastRoutes}/>}/>
             
         </Switch>
       </main>

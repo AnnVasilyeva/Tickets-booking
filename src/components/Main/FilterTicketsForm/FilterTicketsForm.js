@@ -9,11 +9,58 @@ export default class FilterTicketsForm extends Component {
         this.state = {
             startDate: '',
             endDate: '',
-        }    
+        } 
+		this.detailsList = [
+			{
+				title: 'Купе',
+				src: '/images/icon-stateroom.png',
+				alt: 'icon stateroom',
+				width: '17',
+				height: '17'
+			},
+			{
+				title: 'Плацкарт',
+				src: '/images/icon-joint.png',
+				alt: 'icon joint',
+				width: '17',
+				height: '17'
+			},
+			{
+				title: 'Сидячий',
+				src: '/images/icon-seat.png',
+				alt: 'icon seat',
+				width: '14',
+				height: '23'
+			},
+			{
+				title: 'Люкс',
+				src: '/images/icon-lux.png',
+				alt: 'icon lux',
+				width: '22',
+				height: '20'
+			},
+			
+			{
+				title: 'Wi-Fi',
+				src: '/images/icon-wifi.png',
+				alt: 'icon wifi',
+				width: '24',
+				height: '19'
+			},
+			
+			{
+				title: 'Экспресс',
+				src: '/images/icon-express.png',
+				alt: 'icon express',
+				width: '20',
+				height: '20'
+			}
+		]   
     }
 
     render () {
         const {startDate, endDate} = this.state;
+
         return (
             <section className="sidebar-filters">
 		    <div className="date-filter">
@@ -56,66 +103,19 @@ export default class FilterTicketsForm extends Component {
 			
 			<div className="details-filter">
 				<ul className="details-list">
-					<li className="details-item">
-						<div className="icon">
-                            <img src="/images/icon-stateroom.png" width="17" height="17" alt="icon stateroom"/>
-						</div>
-						<span className="details-item-name">Купе</span>
-						<label className="switch">
-						  <input type="checkbox"/>
-						  <span className="slider round"></span>
-						</label>						
-					</li>
-					<li className="details-item">
-						<div className="icon">
-							<img src="/images/icon-joint.png" width="17" height="17" alt="icon joint"/>
-						</div>
-						<span className="details-item-name">Плацкарт</span>
-						<label className="switch">
-						  <input type="checkbox"/>
-						  <span className="slider round"></span>
-						</label>						
-					</li>
-					<li className="details-item">
-						<div className="icon">
-							<img src="/images/icon-seat.png" width="14" height="23" alt="icon seat"/>
-						</div>
-						<span className="details-item-name">Сидячий</span>
-						<label className="switch">
-						  <input type="checkbox"/>
-						  <span className="slider round"></span>
-						</label>						
-					</li>
-					<li className="details-item">
-						<div className="icon">
-							<img src="/images/icon-lux.png" width="22" height="20" alt="icon lux"/>
-						</div>
-						<span className="details-item-name">Люкс</span>
-						<label className="switch">
-						  <input type="checkbox"/>
-						  <span className="slider round"></span>
-						</label>						
-					</li>
-					<li className="details-item">
-						<div className="icon">
-							<img src="/images/icon-wifi.png" width="24" height="19" alt="icon wifi"/>
-						</div>
-						<span className="details-item-name">Wi-Fi</span>
-						<label className="switch">
-						  <input type="checkbox"/>
-						  <span className="slider round"></span>
-						</label>						
-					</li>
-					<li className="details-item">
-						<div className="icon">
-							<img src="/images/icon-express.png" width="20" height="20" alt="icon-express"/>
-						</div>
-						<span className="details-item-name">Экспресс</span>
-						<label className="switch">
-						  <input type="checkbox"/>
-						  <span className="slider round"></span>
-						</label>						
-					</li>
+					{this.detailsList.map((item,index) => 
+						<li className="details-item" key={index}>
+							<div className="icon">
+								<img src={item.src} width={item.width} height={item.height} alt={item.alt}/>
+							</div>
+							<span className="details-item-title">{item.title}</span>
+							<label className="switch">
+								<input type="checkbox"/>
+								<span className="slider round"></span>
+							</label>						
+						</li>
+					)}
+					
 				</ul>
 			</div>
 			
