@@ -29,13 +29,13 @@ export default class FormattingData {
                 // price: departure.price_info.fourth.bottom_price,
                 // count: departure.avaliable_seats_info.fourth
             }
-        ];
+        ]; 
     }
 
-    getFeaturesList (departure) {
+    // getFeaturesList (departure) {
         
 
-    }
+    // }
     
     ucFirst (str) {
         if (!str) return str;

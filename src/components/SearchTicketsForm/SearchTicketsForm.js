@@ -6,6 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import BookingService from '../../services/bookingService';
 import './SearchTicketsForm.css';
 
+// с сервера приходят билеты со старыми датами (март), на нынешние даты билетов нет
 export default class SearchTicketsForm extends Component {
     constructor(props) {
         super(props);

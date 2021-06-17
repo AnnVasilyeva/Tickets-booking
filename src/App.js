@@ -10,7 +10,7 @@ import Footer from "./components/Footer/Footer";
 function App() {
 
   const service = new BookingService();
-  const [routes, setRoutes] = useState({});
+  const [routes, setRoutes] = useState();
   const [lastRoutes, setLastRoutes] = useState();
 
   const getRoutesObject = (newRoutes, history) => {
@@ -19,8 +19,8 @@ function App() {
     service.getLastRoutes()
       .then(res => setLastRoutes(res))
       .catch(error => console.log(error));
-
-    history.push('/routes');
+       
+      history.push('/routes');
   };
     
   
@@ -36,8 +36,7 @@ function App() {
       <main>
         <Switch>
             <Route exact path='/' component={MainFirstPage}/>
-            <Route path='/routes' render={props => <MainOrderPage {...props} routes={routes.routes} lastRoutes={lastRoutes}/>}/>
-            
+            <Route exact path='/routes' render={props => <MainOrderPage {...props} routes={routes.routes} lastRoutes={lastRoutes}/>}/>
         </Switch>
       </main>
         <Footer/> 

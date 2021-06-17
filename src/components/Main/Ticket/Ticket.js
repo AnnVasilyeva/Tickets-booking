@@ -1,11 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './ticket.css';
 import FormattingData from '../../../services/formattingData';
 
-export default function Ticket ({item}) {
+export default function Ticket ({ticket}) {
+    
     const formattingData = new FormattingData();
 
-    const {have_first_class, have_second_class, have_third_class, have_fourth_class, have_wifi, have_air_conditioning, is_express, min_price, arrival, departure, avaliable_seats_info} = item;
+    const {have_wifi, have_air_conditioning, is_express, min_price, arrival, departure, avaliable_seats_info} = ticket;
 
         // this.featuresList = [
         //     {
@@ -22,12 +23,25 @@ export default function Ticket ({item}) {
         //         isHave: is_express,
         //         src: "/images/icon-express.png",
         //         alt: "icon express"
-        //     },
-            
+        //     },           
         // ]
-
 	// }
 
+    const RailwayCarriageItem = ({name, price, count}) => {
+        return (
+            <li className="railway-carriage-item">
+            <div className="railway-carriage_class">{name}</div>
+            <div className="railway-carriage-seats_info">{count}</div>
+            <div className="railway-carriage-price_info ticket-cost">
+            <span>от</span>
+            <span className="cost">{price}</span>
+            <div className="icon-value">
+                <img src="/images/icon-value.png" alt="russian ruble"/>
+            </div>
+            </div>
+        </li>
+        )
+    }
 
     return (
         <li className="found-routes-item">
@@ -96,20 +110,7 @@ export default function Ticket ({item}) {
                 <footer>
                 <section className="railway-carriage">
                     <ul className="railway-carriage-list">
-                        {/* {seatsList.map(item => {item.isHave && 
-                            <li className="railway-carriage-item">
-                                <div className="railway-carriage_class">{item.name}</div>
-                                <div className="railway-carriage-seats_info">{item.count}</div>
-                                <div className="railway-carriage-price_info ticket-cost">
-                                <span>от</span>
-                                <span className="cost">{item.price}</span>
-                                <div className="icon-value">
-                                    <img src="/images/icon-value.png" alt="russian ruble"/>
-                                </div>
-                                </div>
-                            </li>
-                        })}
-                         */}
+     {/* пока не знаю как реализовать проверку количества мест по категориям */}
                         <li className="railway-carriage-item">
                             <div className="railway-carriage_class">Плацкарт</div>
                             <div className="railway-carriage-seats_info">52</div>
@@ -134,28 +135,18 @@ export default function Ticket ({item}) {
                 
                             </div>
                         </li>
-                        <li className="railway-carriage-item">
-                            <div className="railway-carriage_class">Люкс</div>
-                            <div className="railway-carriage-seats_info">15</div>
-                            <div className="railway-carriage-price_info ticket-cost">
-                                <span>от</span>
-                                <span className="cost">4950</span>
-                                <div className="icon-value">
-                                    <img src="/images/icon-value.png" alt="russian ruble"/>
-                                </div>
-                
-                            </div>
-                        </li>
-
+                       
                     </ul>
                     <div className="railway-carriage-features">
                         <ul className="ticket-features-list">
+                 {/* пока не знаю как реализовать проверку возможностей поезда */}
                             {/* {featuresList.map(item => {item.isHave &&
                                 <li className="ticket-features-icon">
                                     <img src={item.src} alt={item.alt}/>		
                                 </li>
                             })} */}
-                            {/* <li className="ticket-features-icon">
+
+                            <li className="ticket-features-icon">
                                 <img src="/images/icon-wifi.png" alt="icon wi-fi"/>							
                             </li>
                             <li className="ticket-features-icon">
@@ -166,7 +157,7 @@ export default function Ticket ({item}) {
                                     <img src="/images/icon-cup.png" alt="icon cup"/>
                                     <img src="/images/icon-plate.png" alt="icon plate"/>
                                 </div>
-                            </li> */}
+                            </li>
                         </ul>
                     </div>
                     

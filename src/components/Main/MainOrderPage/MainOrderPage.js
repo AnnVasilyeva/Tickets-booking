@@ -7,11 +7,12 @@ import PopupWindow from '../../PopupWindow/PopupWindow';
 
 
 export default function MainOrderPage ({routes, lastRoutes}) {
-	// При выборе Москва-Питер выдает total_count: 13, но в массиве всего 5 билетов. Как проверять сортировку?
+	// При выборе направления выдает (например) total_count: 13, но в массиве всего 5 билетов. Как проверять сортировку?
 
+	console.log(routes);
 	const [sortIndex, setSortIndex] = useState(5);
 	const sortCountList = [5, 10, 20];
-	const [isPopup, setIsPopup] = useState(false);
+	// const [isPopup, setIsPopup] = useState(false); 
 
 	const getSortRoutesCount = (index) => {
 		setSortIndex(index);
@@ -68,23 +69,18 @@ export default function MainOrderPage ({routes, lastRoutes}) {
 				</header>
 
 				{
-					routes.items.length > 0 ? 
+					routes.total_count > 0 ? 
 					<ul className="found-routes-list">
 						{routes.items.map((item, index) => {
 							if(index < sortIndex) {
-								return <Ticket item={item} key={index}/>
+								return <Ticket ticket={item} key={index}/>
 							}	
 						})}
 					</ul>
-					: <PopupWindow/>
+					: <PopupWindow text={'По выбранному направлению билетов нет. Попробуйте выбрать другое направление.'} isError={false}/>
+					// пока не знаю как его закрыть
 				}
-					
-					
-					
-				
-				
-				
-				
+
 				
 				{/* <div className="found-routes-list-pagination">
 					<a href="#">0</a>
