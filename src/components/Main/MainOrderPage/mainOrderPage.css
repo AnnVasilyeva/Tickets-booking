@@ -17,6 +17,7 @@
 }
 
 .found-routes-header {
+	width: 100%;
 	color: #928F94;
 	font-size: 18px;
 	font-weight: 400;
@@ -47,33 +48,48 @@
 	justify-content: baseline;
 }
 
-.routes-sort span {
-	margin-right: 7px;
+.routes-sort button {
+	height: 32px;
+	box-sizing: border-box;
+	padding: 0px 11px 15px 7px;
+	font-size: 18px;
+	border: none;
+	cursor: pointer;
+	color: #928F94;
+	background-color: #E5E5E5;
 }
 
-.routes-sort-list.open {
+.routes-sort span {
+	margin-right: 10px;
+	color: #3E3C41;
+}
+
+.routes-sort-list {
 	display: flex;
 	flex-direction: column;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	
 }
 
-.routes-sort-list.open li {
+.routes-sort-list li {
 	padding: 8px 11px 10px 7px;
+	color: #3E3C41;
 	background-color: #F7F5F9;
 	cursor: pointer;
+	text-align: left;
 
 }
 
-.routes-sort-list.open li:first-of-type {
+.routes-sort-list li:first-of-type {
 	padding-top: 0;
 }
 
-.routes-sort-list.open li:not(:last-of-type) {
+.routes-sort-list li:not(:last-of-type) {
 	border-bottom: 1px solid #E5E5E5;
 	
 }
 
-.routes-sort-list.open li:hover {
+.routes-sort-list li:hover {
 	color: #fff;
 	background-color: #FFCA62;
 }
@@ -83,6 +99,7 @@
 	justify-content: space-between;
 	align-items: center;
 }
+
 
 .routes-limit-list {
 	display: flex;

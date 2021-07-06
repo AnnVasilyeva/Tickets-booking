@@ -10,11 +10,6 @@ export default function Header (props) {
     const mainPage = 'header';
     const orderPage = ' order-page';
 
-    // const routerChange = () => {
-    //     props.addRoutes(props.history)
-    //     // props.history.push('/routes');
-    // }
-
     const navLinksList = [
         {href: '#info', title: 'О нас'},
         {href: '#features', title: 'Как это работает'},

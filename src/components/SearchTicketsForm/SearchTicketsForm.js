@@ -61,8 +61,8 @@ export default class SearchTicketsForm extends Component {
 
 
         this.setState({
-            fromCity: {name: '', id: ''},
-            toCity: {name: '', id: ''},
+            // fromCity: {name: '', id: ''},
+            // toCity: {name: '', id: ''},
             startDate: '',
             endDate: '',
             isOpen: false,
@@ -105,7 +105,6 @@ export default class SearchTicketsForm extends Component {
     
 
     render () {
-        
         const {fromCity, toCity, startDate, endDate, isOpen, list, focusInput} = this.state;
 
         return (

@@ -2,17 +2,26 @@ import React, {Component} from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import './filterTicketsForm.css';
+import DetailsFilterItem from '../DetailsFilterItem/DetailsFilterItem';
 
 export default class FilterTicketsForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            startDate: '',
-            endDate: '',
+					date_start: '',
+					date_end: '',
+					have_first_class: false,
+					have_second_class: false,
+					have_third_class: false,
+					have_fourth_class: false,
+					have_wifi: false,
+					have_express: false,
         } 
+
 		this.detailsList = [
 			{
 				title: 'Купе',
+				filterName: 'have_second_class',
 				src: '/images/icon-stateroom.png',
 				alt: 'icon stateroom',
 				width: '17',
@@ -20,6 +29,7 @@ export default class FilterTicketsForm extends Component {
 			},
 			{
 				title: 'Плацкарт',
+				filterName: 'have_third_class',
 				src: '/images/icon-joint.png',
 				alt: 'icon joint',
 				width: '17',
@@ -27,6 +37,7 @@ export default class FilterTicketsForm extends Component {
 			},
 			{
 				title: 'Сидячий',
+				filterName: 'have_fourth_class',
 				src: '/images/icon-seat.png',
 				alt: 'icon seat',
 				width: '14',
@@ -34,6 +45,7 @@ export default class FilterTicketsForm extends Component {
 			},
 			{
 				title: 'Люкс',
+				filterName: 'have_first_class',
 				src: '/images/icon-lux.png',
 				alt: 'icon lux',
 				width: '22',
@@ -42,6 +54,7 @@ export default class FilterTicketsForm extends Component {
 			
 			{
 				title: 'Wi-Fi',
+				filterName: 'have_wifi',
 				src: '/images/icon-wifi.png',
 				alt: 'icon wifi',
 				width: '24',
@@ -50,6 +63,7 @@ export default class FilterTicketsForm extends Component {
 			
 			{
 				title: 'Экспресс',
+				filterName: 'have_express',
 				src: '/images/icon-express.png',
 				alt: 'icon express',
 				width: '20',
@@ -58,9 +72,37 @@ export default class FilterTicketsForm extends Component {
 		]   
     }
 
-    render () {
-        const {startDate, endDate} = this.state;
+		componentDidUpdate(prevProps, prevState) {
+			if (!this.shallowEqual(prevState, this.state)) {
+				this.props.changeRoutesList(this.state);
+			}
+		}
 
+		shallowEqual(object1, object2) {
+			const keys1 = Object.keys(object1);
+			const keys2 = Object.keys(object2);		
+			if (keys1.length !== keys2.length) {
+				return false;
+			}		
+			for (let key of keys1) {
+				if (object1[key] !== object2[key]) {
+					return false;
+				}
+			}		
+			return true;
+		}
+
+	
+		changeState = (name) => {
+			this.setState((state) => {
+				return {[name]: !state[name]};	
+			})
+		}
+
+
+    render () {
+        const {date_start, date_end} = this.state;
+				
         return (
             <section className="sidebar-filters">
 		    <div className="date-filter">
@@ -69,13 +111,13 @@ export default class FilterTicketsForm extends Component {
 				    		<legend>Дата поездки</legend>
 				    		<div className="form-input_date">		
 								<DatePicker
-                            selected={startDate}
+                            selected={date_start}
                             onChange={date => console.log(date)}
                             minDate={new Date()}
                             placeholderText="ДД/ММ/ГГ"
                             closeOnScroll={true}
                             dateFormat="dd-MM-yyyy"
-                            name="startDate"
+                            name="date_start"
                             autoComplete="off" 
                             showDisabledMonthNavigation
                         />
@@ -86,13 +128,13 @@ export default class FilterTicketsForm extends Component {
 				    		<legend>Дата возвращения</legend>
 				    		<div className="form-input_date">
 								<DatePicker
-                            selected={endDate}
+                            selected={date_end}
                             onChange={date => console.log(date)}
                             minDate={new Date()}
                             placeholderText="ДД/ММ/ГГ"
                             closeOnScroll={true}
                             dateFormat="dd-MM-yyyy"
-                            name="endDate"
+                            name="date_end"
                             autoComplete="off" 
                             showDisabledMonthNavigation
                         />
@@ -104,16 +146,7 @@ export default class FilterTicketsForm extends Component {
 			<div className="details-filter">
 				<ul className="details-list">
 					{this.detailsList.map((item,index) => 
-						<li className="details-item" key={index}>
-							<div className="icon">
-								<img src={item.src} width={item.width} height={item.height} alt={item.alt}/>
-							</div>
-							<span className="details-item-title">{item.title}</span>
-							<label className="switch">
-								<input type="checkbox"/>
-								<span className="slider round"></span>
-							</label>						
-						</li>
+						<DetailsFilterItem key={index} item={item} changeState={this.changeState}/>
 					)}
 					
 				</ul>

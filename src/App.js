@@ -1,11 +1,12 @@
-import React, {useState} from 'react';
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import React, {useEffect, useState} from 'react';
+import {BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
 import './App.css';
 import BookingService from './services/bookingService';
 import Header from "./components/Header/Header";
 import MainFirstPage from "./components/Main/MainFirstPage/MainFirstPage";
 import MainOrderPage from "./components/Main/MainOrderPage/MainOrderPage";
 import Footer from "./components/Footer/Footer";
+
 
 function App() {
 
@@ -22,21 +23,20 @@ function App() {
        
       history.push('/routes');
   };
-    
-  
 
+    
   return (
     
     <div className="App">
       <Router>
       <Switch>
         <Route exact path='/' render={props => <Header {...props} isOrderPage={false} getRoutesObject={getRoutesObject} />}/>
-        <Route path='/routes' render={props => <Header {...props} isOrderPage={true} getRoutesObject={getRoutesObject} />}/> 
+        <Route path='/routes'>{routes ? <Header isOrderPage={true} getRoutesObject={getRoutesObject} /> : <Redirect to='/'/>}</Route>
       </Switch>   
       <main>
         <Switch>
             <Route exact path='/' component={MainFirstPage}/>
-            <Route exact path='/routes' render={props => <MainOrderPage {...props} routes={routes.routes} lastRoutes={lastRoutes}/>}/>
+            <Route path='/routes'>{routes ? <MainOrderPage routes={routes.routes} lastRoutes={lastRoutes}/> : <Redirect to='/'/>}</Route>
         </Switch>
       </main>
         <Footer/> 

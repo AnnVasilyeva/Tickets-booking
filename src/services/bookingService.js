@@ -5,6 +5,7 @@ export default class BookingService {
     }
 
     async getResource(url) {
+        // console.log(url);
         const res = await fetch(`${this._apiBase}${url}`);
 
         if(!res.ok) {
@@ -58,7 +59,6 @@ export default class BookingService {
     // }
 
     getCities(value) {
-        console.log('get')
         return this.getResource(`/routes/cities?name=${value}`);
     }
 
@@ -67,11 +67,28 @@ export default class BookingService {
     }
 
     getRoutes(body) {
-        const {from_city_id, to_city_id, date_start, date_end} = body;
+        const {from_city_id, to_city_id, date_start='', date_end='', sort = 'date',
+        have_first_class, have_second_class, have_third_class,
+        have_fourth_class, have_wifi, have_air_conditioning, have_express} = body;
 
-        return this.getResource(`/routes/?from_city_id=${from_city_id}&to_city_id=${to_city_id}&date_start=${date_start}&date_end=${date_end}`);
+        // let bodyString = [];
+
+        // for(let key in body) {
+        //     if(body[key]) {
+        //         console.log(key);
+        //         bodyString.push(`&${[key]}=${body[key]}`);
+        //         console.log(bodyString);
+
+        //     }
+        // }
+
+        // return this.getResource(`/routes/?${bodyString.join('')}`);
+        return this.getResource(`/routes/?from_city_id=${from_city_id}&to_city_id=${to_city_id}&date_start=${date_start}&date_end=${date_end}&sort=${sort}`);
 
     }
+
+    // &have_first_class=${have_first_class}&have_second_class=${have_second_class}&have_third_class=${have_third_class}&have_fourth_class=${have_fourth_class}&have_wifi=${have_wifi}&have_air_conditioning=${have_air_conditioning}&have_express=${have_express}
+    
 
     // getSeats(body) {
     //     return this.getResource(`routes/${body.id}/seats?have_wifi=${body.have_wifi}`)
