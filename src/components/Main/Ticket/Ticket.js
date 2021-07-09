@@ -3,10 +3,11 @@ import './ticket.css';
 import FormattingData from '../../../services/formattingData';
 
 export default function Ticket ({ticket}) {
+    // console.log(ticket);
     
     const formattingData = new FormattingData();
 
-    const {have_wifi, have_air_conditioning, is_express, min_price, arrival, departure, avaliable_seats_info} = ticket;
+    const {have_wifi, have_air_conditioning, is_express, min_price, arrival, departure} = ticket;
 
         // this.featuresList = [
         //     {
@@ -26,6 +27,42 @@ export default function Ticket ({ticket}) {
         //     },           
         // ]
 	// }
+
+    const RailwayCarriageList = ({departureInfo}) => {
+        const {available_seats_info, price_info} = departureInfo;
+        let list = [];
+        for(let seats in available_seats_info) {
+            for(let price in price_info) {
+               if(seats === price) {
+                let item = {name: seats, seats: available_seats_info[seats], ...price_info[price]};
+                list.push(item);
+               }     
+            }
+        }
+
+        const items = list.map((item, index) => {
+            let name;
+            switch(item.name) {
+                case 'first': name = 'Люкс';
+                break;
+                case 'second': name = 'Купе';
+                break;
+                case 'third': name = 'Плацкарт';
+                break;
+                case 'fourth': name = 'Сидячий';
+                break;
+                default: 'No info';
+                break;
+            }            
+            return <RailwayCarriageItem key={index} name={name} price={item.bottom_price} count={item.seats}/>
+        })
+        
+        return (
+            <ul className="railway-carriage-list">
+                {items}
+            </ul>
+        )
+    }
 
     const RailwayCarriageItem = ({name, price, count}) => {
         return (
@@ -109,34 +146,7 @@ export default function Ticket ({ticket}) {
                 </main>
                 <footer>
                 <section className="railway-carriage">
-                    <ul className="railway-carriage-list">
-     {/* пока не знаю как реализовать проверку количества мест по категориям */}
-                        <li className="railway-carriage-item">
-                            <div className="railway-carriage_class">Плацкарт</div>
-                            <div className="railway-carriage-seats_info">52</div>
-                            <div className="railway-carriage-price_info ticket-cost">
-                                <span>от</span>
-                                <span className="cost">2530</span>
-                                <div className="icon-value">
-                                    <img src="/images/icon-value.png" alt="russian ruble"/>
-                                </div>
-                
-                            </div>
-                        </li>
-                        <li className="railway-carriage-item">
-                            <div className="railway-carriage_class">Купе</div>
-                            <div className="railway-carriage-seats_info">24</div>
-                            <div className="railway-carriage-price_info ticket-cost">
-                                <span>от</span>
-                                <span className="cost">3820</span>
-                                <div className="icon-value">
-                                    <img src="/images/icon-value.png" alt="russian ruble"/>
-                                </div>
-                
-                            </div>
-                        </li>
-                       
-                    </ul>
+                    <RailwayCarriageList departureInfo={departure}/>
                     <div className="railway-carriage-features">
                         <ul className="ticket-features-list">
                  {/* пока не знаю как реализовать проверку возможностей поезда */}
