@@ -21,7 +21,7 @@ function App() {
       .then(res => setLastRoutes(res))
       .catch(error => console.log(error));
        
-      history.push('/routes');
+      if(history) {history.push('/routes')};
   };
 
     

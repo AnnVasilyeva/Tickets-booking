@@ -1,32 +1,14 @@
 import React, {useState} from 'react';
 import './ticket.css';
 import FormattingData from '../../../services/formattingData';
+import FeaturesList from '../FeaturesList/FeaturesList';
 
 export default function Ticket ({ticket}) {
     // console.log(ticket);
     
     const formattingData = new FormattingData();
 
-    const {have_wifi, have_air_conditioning, is_express, min_price, arrival, departure} = ticket;
-
-        // this.featuresList = [
-        //     {
-        //         isHave: have_wifi,
-        //         src: "/images/icon-wifi.png",
-        //         alt: "icon wi-fi"
-        //     },
-        //     {
-        //         isHave: have_air_conditioning,
-        //         src: "/images/icon-cup.png",
-        //         alt: "icon conditioning"
-        //     },
-        //     {
-        //         isHave: is_express,
-        //         src: "/images/icon-express.png",
-        //         alt: "icon express"
-        //     },           
-        // ]
-	// }
+    const {min_price, arrival, departure} = ticket;
 
     const RailwayCarriageList = ({departureInfo}) => {
         const {available_seats_info, price_info} = departureInfo;
@@ -148,34 +130,13 @@ export default function Ticket ({ticket}) {
                 <section className="railway-carriage">
                     <RailwayCarriageList departureInfo={departure}/>
                     <div className="railway-carriage-features">
-                        <ul className="ticket-features-list">
-                 {/* пока не знаю как реализовать проверку возможностей поезда */}
-                            {/* {featuresList.map(item => {item.isHave &&
-                                <li className="ticket-features-icon">
-                                    <img src={item.src} alt={item.alt}/>		
-                                </li>
-                            })} */}
-
-                            <li className="ticket-features-icon">
-                                <img src="/images/icon-wifi.png" alt="icon wi-fi"/>							
-                            </li>
-                            <li className="ticket-features-icon">
-                                <img src="/images/icon-express.png" alt="icon express"/>
-                            </li>
-                            <li className="ticket-features-icon">
-                                <div className="icon-cup-wrapper">
-                                    <img src="/images/icon-cup.png" alt="icon cup"/>
-                                    <img src="/images/icon-plate.png" alt="icon plate"/>
-                                </div>
-                            </li>
-                        </ul>
+                        <FeaturesList departureInfo={departure}/>
                     </div>
-                    
                     <div className="btn-seat-selection">Выбрать места</div>
                 </section>
             </footer>
         </li>
     )
                         
-                        }
+}
 

@@ -1,10 +1,11 @@
 import './lastTicket.css';
 import FormattingData from '../../../services/formattingData';
+import FeaturesList from '../FeaturesList/FeaturesList';
 
 export default function LastTicket ({item}) {
   const formattingData = new FormattingData();
 
-  const {departure: {from, to}, have_first_class, have_second_class, have_third_class, have_fourth_class, have_wifi, have_air_conditioning, is_express, min_price} = item;
+  const {departure: {from, to}, min_price} = item;
 
   return (
     <li className="last-tickets-item">
@@ -21,20 +22,7 @@ export default function LastTicket ({item}) {
       </div>
       
       <div className="tickets-item-features">
-        <ul className="ticket-features-list">
-          <li className="ticket-features-icon">
-            <img src="/images/icon-wifi.png" alt="icon-wifi"/>			
-          </li>
-          <li className="ticket-features-icon">
-            <img src="/images/icon-express.png" alt="icon-express"/>
-          </li>
-          <li className="ticket-features-icon">
-            <div className="icon-cup-wrapper">
-              <img src="/images/icon-cup.png" alt="icon-cup"/>
-              <img src="/images/icon-plate.png" alt="icon-plate"/>
-            </div>
-          </li>
-        </ul>
+        <FeaturesList departureInfo={item.departure}/>
         <div className="ticket-cost">
           <span>от</span>
           <span className="cost">{min_price}</span>

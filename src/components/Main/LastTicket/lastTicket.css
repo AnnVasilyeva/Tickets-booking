@@ -59,15 +59,6 @@
 	align-items: flex-end;
 }
 
-.icon-cup-wrapper {
-	padding-bottom: 5px;
-}
-
-
-.icon-cup-wrapper img {
-	display: block;
-	
-}
 
 .ticket-features-icon:not(:last-of-type) {
 	margin-right: 16px
