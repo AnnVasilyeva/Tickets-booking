@@ -1,12 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import './mainOrderPage.css';
 import FilterTicketsForm from '../FilterTicketsForm/FilterTicketsForm';
-import Ticket from '../Ticket/Ticket';
 import LastTicket from '../LastTicket/LastTicket';
-import PopupWindow from '../../PopupWindow/PopupWindow';
-import RoutesSortList from '../RoutesSortList/RoutesSortList';
 import BookingService from '../../../services/bookingService';
-
+import TicketsListSection from '../TicketsListSection/TicketsListSection';
+import SeatSelectionSection from '../SeatSelectionSection/SeatSelectionSection';
 
 export default function MainOrderPage ({routes, lastRoutes}) {
 	// При выборе направления выдает (например) total_count: 13, но в массиве всего 5 билетов. Как проверять сортировку?
@@ -16,19 +14,13 @@ export default function MainOrderPage ({routes, lastRoutes}) {
 	const [sortIndex, setSortIndex] = useState(5);
 	const sortCountList = [5, 10, 20];
 	const [sortRoutesList, setSortRoutesList] = useState({status: false, type: 'времени'});
+	const [isSeatSelectionSection, setIsSeatSelectionSection] = useState(false);
+	const [ticketSelection, setTicketSelection] = useState();
 	// const [isPopup, setIsPopup] = useState(false); 
 	
 
 	const getSortRoutesCount = (index) => {
 			setSortIndex(index);
-	}
-
-	const SortCountItem = ({item, onClick}) => {
-		return(
-			<li className={sortIndex === item ? `limit selected` : 'limit'}
-			onClick={() => onClick(item)}
-			aria-hidden="true">{item}</li>
-		)	
 	}
 
 	const changeSortList = (sortItem = sortRoutesList) => {
@@ -53,6 +45,13 @@ export default function MainOrderPage ({routes, lastRoutes}) {
 
 	}
 
+	const seatSelection = (selectedTicket) => {
+		
+		setTicketSelection(selectedTicket)
+		setIsSeatSelectionSection(true);
+
+	}
+
 	
 
 	return (
@@ -71,62 +70,24 @@ export default function MainOrderPage ({routes, lastRoutes}) {
 					</ul>
 				</section>
 			</aside>
+
+			{isSeatSelectionSection ? <SeatSelectionSection ticket={ticketSelection}/> : <TicketsListSection routesList={routesList}
+													routes={routes} 
+													sortIndex={sortIndex}
+													sortCountList={sortCountList}
+													setSortRoutesList={setSortRoutesList}
+													sortRoutesList={sortRoutesList}
+													changeSortList={changeSortList}
+													getSortRoutesCount={getSortRoutesCount}
+    											seatSelection={seatSelection}
+			/>
+			}
+
 			
-			<section className="order-page-found-routes">
-				<header className="found-routes-header">
-					<div className="found-routes-count">
-						<span>найдено </span>
-						<span className="total-count">{routesList.total_count}</span>
-					</div>
-					<div className="routes-sort">
-						<button onClick={() => {
-							if(routesList.total_count > 0) {
-								setSortRoutesList({status: !status});
-							} 
-							
-						}}>сортировать по:</button>
-						<RoutesSortList sortRoutesList={sortRoutesList} changeSortList={changeSortList}/>
-					</div>
-					<div className="routes-limit">
-						<span>показывать по:</span>
-						<ul className="routes-limit-list">
-							{sortCountList.map((item, index) => 
-							<SortCountItem key={index} item={item} onClick={getSortRoutesCount}/>)}
-						</ul>					
-					</div>
-				</header>
-
-				{
-					routes.total_count > 0 ? 
-					<ul className="found-routes-list">
-						{routesList.items.map((item, index) => {
-							if(index < sortIndex) {
-								return <Ticket ticket={item} key={index}/>
-							}	
-						})}
-					</ul>
-					: <PopupWindow text={'По выбранному направлению билетов нет. Попробуйте выбрать другое направление.'} isError={false}/>
-					// пока не знаю как его закрыть
-				}
-
-				
-				{/* <div className="found-routes-list-pagination">
-					<a href="#">0</a>
-					<a href="#" className="active">1</a>
-					<a href="#">2</a>
-					<a href="#">3</a>
-					<a href="#"></a>
-				</div> */}
-			</section>
+			
+		
 		</div>	
 			)
 }
-
-{/* для иконки с чашкой */}
-										{/* <div className="icon-cup-wrapper">
-											<img src="/images/icon-cup.png" alt="icon-cup"/>
-											<img src="/images/icon-plate.png" alt="icon-plate"/>
-										</div> */}	
-	
 	
     

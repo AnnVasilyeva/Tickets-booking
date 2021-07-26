@@ -1,14 +1,14 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './ticket.css';
 import FormattingData from '../../../services/formattingData';
 import FeaturesList from '../FeaturesList/FeaturesList';
 
-export default function Ticket ({ticket}) {
+export default function Ticket ({ticket, getSeatSelection}) {
     // console.log(ticket);
     
     const formattingData = new FormattingData();
 
-    const {min_price, arrival, departure} = ticket;
+    const {arrival, departure} = ticket;
 
     const RailwayCarriageList = ({departureInfo}) => {
         const {available_seats_info, price_info} = departureInfo;
@@ -122,9 +122,7 @@ export default function Ticket ({ticket}) {
                     </div>
                     
                 </section>
-                }
-                
-                
+                }                
                 </main>
                 <footer>
                 <section className="railway-carriage">
@@ -132,7 +130,7 @@ export default function Ticket ({ticket}) {
                     <div className="railway-carriage-features">
                         <FeaturesList departureInfo={departure}/>
                     </div>
-                    <div className="btn-seat-selection">Выбрать места</div>
+                    <button className="btn-seat-selection" onClick={() => getSeatSelection(ticket)}>Выбрать места</button>
                 </section>
             </footer>
         </li>

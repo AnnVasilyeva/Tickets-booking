@@ -2,7 +2,7 @@
   "plugins": [
     "jsx-a11y"
   ],
-
+  
   "rules": {
     "jsx-a11y/no-noninteractive-element-interactions": [
       "error",

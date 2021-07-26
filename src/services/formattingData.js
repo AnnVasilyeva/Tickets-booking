@@ -59,4 +59,21 @@ export default class FormattingData {
 
     }  
 
+    formattedDurationHours (timeSec) {
+        const hours = Math.floor(timeSec / 60 / 60);
+        
+        return `${hours.toString().padStart(2, '0')} часов`;
+
+    }
+
+    formattedDurationMinutes (timeSec) {
+        const hours = Math.floor(timeSec / 60 / 60);
+        const minutes = Math.floor(timeSec / 60) - (hours * 60);
+
+        return `${minutes.toString().padStart(2, '0')} минуты`;
+
+    }
+
+
+
 }

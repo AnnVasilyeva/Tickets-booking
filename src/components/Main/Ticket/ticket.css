@@ -103,6 +103,12 @@
 	padding: 37px 22px 23px 27px;
 }
 
+.railway-carriage {
+	display: flex;
+	flex-direction: column;
+	
+}
+
 .railway-carriage ul {
 	list-style: none;
 	padding: 0;
@@ -112,7 +118,7 @@
 .railway-carriage-item {
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
+	align-items: baseline;
 	font-size: 16px;
 	margin-bottom: 24px;
 }
@@ -137,6 +143,7 @@
 	min-width: 86px;
 	font-weight: 400;
 	color: #3E3C41;
+	text-align: left;
 }
 
 .railway-carriage-seats_info {
@@ -156,9 +163,11 @@
 	font-weight: 700;
 	background-color: #FFA800;
 	border-radius: 5px;
+	border: none;
 	padding: 6px 13px 9px 9px;
 	cursor: pointer;
 	box-sizing: border-box;	
+
 }
 
 
@@ -174,4 +183,5 @@
 	border: 1px solid #FFA800;
 	box-sizing: border-box;	
 	box-shadow: none;
+	
 }
