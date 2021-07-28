@@ -46,7 +46,9 @@ export default function MainOrderPage ({routes, lastRoutes}) {
 	}
 
 	const seatSelection = (selectedTicket) => {
-		
+		server.getSeats(selectedTicket)
+			.then(res => console.log(res))
+			.catch(error => console.log(error));
 		setTicketSelection(selectedTicket)
 		setIsSeatSelectionSection(true);
 

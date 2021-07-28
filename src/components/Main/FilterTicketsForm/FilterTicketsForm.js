@@ -22,32 +22,32 @@ export default class FilterTicketsForm extends Component {
 			{
 				title: 'Купе',
 				filterName: 'have_second_class',
-				src: '/images/icon-stateroom.png',
-				alt: 'icon stateroom',
+				src: '/images/icon-second-class.png',
+				alt: 'icon second-class',
 				width: '17',
 				height: '17'
 			},
 			{
 				title: 'Плацкарт',
 				filterName: 'have_third_class',
-				src: '/images/icon-joint.png',
-				alt: 'icon joint',
+				src: '/images/icon-third-class.png',
+				alt: 'icon third-class',
 				width: '17',
 				height: '17'
 			},
 			{
 				title: 'Сидячий',
 				filterName: 'have_fourth_class',
-				src: '/images/icon-seat.png',
-				alt: 'icon seat',
+				src: '/images/icon-fourth-class.png',
+				alt: 'icon fourth-class',
 				width: '14',
 				height: '23'
 			},
 			{
 				title: 'Люкс',
 				filterName: 'have_first_class',
-				src: '/images/icon-lux.png',
-				alt: 'icon lux',
+				src: '/images/icon-first-class.png',
+				alt: 'icon first-class',
 				width: '22',
 				height: '20'
 			},
