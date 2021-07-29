@@ -66,6 +66,10 @@
 	margin-bottom: 63px;
 }
 
+.found-routes-item .train-departure, .found-routes-item .train-arrival {
+	text-align: left;
+}
+
 
 .train-departure span, .train-arrival span {
 	display: block;

@@ -12,14 +12,21 @@ export default function FeaturesList ({departureInfo}) {
       })
   } 
   
-  if(have_air_conditioning) {
-      list.push({
-          src: "/images/icon-cup.png",
-          src2: "/images/icon-plate.png",
-          alt: "icon conditioning",
+//   if(питание) {
+//       list.push({
+//           src: "/images/icon-cup.png",
+//           alt: "icon питание",
           
-      })
-  } 
+//       })
+//   }
+
+  if(have_air_conditioning) {
+    list.push({
+        src: "/images/icon-air-conditioning.png",
+        alt: "icon conditioning",
+        
+    })
+}
   
   if(is_express) {
       list.push({

@@ -236,7 +236,6 @@
   justify-content: space-between;
   color: #292929;
   font-size: 16px;
-
 }
 
 .wagons-sort {
@@ -246,6 +245,7 @@
 
 .wagons-sort h4 {
   margin: 0 5px 0 0;
+  font-weight: 400;
 
 }
 
@@ -255,6 +255,185 @@
   padding: 0;
   margin: 0;
 }
+
+.wagons-sort-list li {
+ font-weight: 700;
+}
+
+.wagons-sort-list li:not(:last-of-type) {
+  margin-right: 5px;
+}
+
+.wagons-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.wagons-list-item {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 75px;
+  border-bottom: 1px solid #C4C4C4;
+}
+
+.wagons-list-item:not(:first-of-type) {
+  margin-top: 33px;
+}
+
+.wagon-main-info {
+  display: flex;
+}
+
+.wagon-info-table {
+  padding-top: 33px;
+  margin-left: 85px;
+  text-align: left;
+  width: 100%;
+}
+
+
+.wagon-info-table-titles {
+  color: #928F94;
+  font-weight: 400;
+  font-size: 18px;
+  font-family: inherit;
+}
+
+.wagon-info-table-titles td:first-of-type {
+  width: 202px;
+}
+
+.wagon-info-table-titles td:first-of-type span {
+  color: #000;
+  margin-left: 5px;
+}
+
+.wagon-seat-info {
+  font-size: 24px;
+  font-weight: 400;
+  font-family: inherit;
+}
+
+.wagon-seat-info span {
+  font-weight: 700;
+  margin-left: 10px;
+}
+
+.wagon-number {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 30px 60px 30px 30px;
+  color: #292929;
+  background-color: #FFD98F;
+}
+
+.wagon-number .number {
+  font-weight: 700;
+  font-size: 72px;
+  
+}
+
+.wagon-number .text {
+  font-size: 24px;
+}
+
+.wagon-seat-price {
+  font-weight: 700;
+  font-size: 24px;
+  color: #000000;
+}
+
+.wagon-seat-price img {
+  margin-left: 10px;
+}
+
+
+.random-peoples-watch {
+  width: 199px;
+  background-color: #F3F3F3;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 16px 13px 11px 16px;
+  margin-right: 42px;
+  align-self: flex-end;
+  margin-top: 20px;
+
+}
+
+/* Список доп. опций в вагонах */
+
+.features-icons-list ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  
+}
+
+.features-icons-list li {
+  width: 36px;
+  height: 34px;
+  box-sizing: border-box;
+  margin-right: 13px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  border: 1px solid #292929;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.icon.wi-fi {
+  background-image: url("./featuresIcon/icon-wifi-black.png");
+  
+}
+
+.icon.selected {
+  background-color: #FDB935;
+  border: none;
+}
+
+.icon.wi-fi.selected {
+  background-image: url("./featuresIcon/icon-wifi-white.png");
+  
+}
+
+.icon.conditioning {
+  background-image: url("./featuresIcon/icon-air_conditioning.png");
+}
+
+.icon.conditioning.selected {
+  background-image: url("./featuresIcon/icon-air_conditioning-white.png");
+}
+
+.icon.linens {
+  background-image: url("./featuresIcon/icon-linens.png");
+}
+
+.icon.linens.selected {
+  background-image: url("./featuresIcon/icon-linens-white.png");
+}
+
+/* .icon.питание {
+  background-image: url("./featuresIcon/icon-cup-black.png");
+}
+
+.icon.питание.selected {
+  background-image: url("./featuresIcon/icon-cup-white.png");
+} */
+
+
+
+
+
+
+ 
+
+
+
+
 
 
 

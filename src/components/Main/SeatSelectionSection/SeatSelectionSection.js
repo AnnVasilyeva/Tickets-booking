@@ -17,12 +17,33 @@ export default function SeatSelectionSection ({ticket}) {
       "have_wifi": true,
       "have_air_conditioning": true,
       "price": 4920,
+      "top_price": 0,
+      "bottom_price": 0,
+      "side_price": 0,
+      "linens_price": 0,
+      "wifi_price": 0,
+      "avaliable_seats": 21,
+      "is_linens_included": true,
+      "seats": [
+        {
+          "index": 1,
+          "available": true
+        }
+      ]
+    },
+    {
+      "_id": "48309450438",
+      "name": "09",
+      "class_type": "second",
+      "have_wifi": true,
+      "have_air_conditioning": false,
+      "price": 4920,
       "top_price": 2020,
       "bottom_price": 3030,
       "side_price": 0,
       "linens_price": 0,
       "wifi_price": 0,
-      "avaliable_seats": 21,
+      "avaliable_seats": 18,
       "is_linens_included": true,
       "seats": [
         {
