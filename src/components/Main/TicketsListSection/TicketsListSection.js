@@ -1,11 +1,11 @@
 import React from 'react';
 import RoutesSortList from '../RoutesSortList/RoutesSortList';
 import Ticket from '../Ticket/Ticket';
+import PopupWindow from '../../PopupWindow/PopupWindow';
 
+ export default function TicketsListSection ({routesList, sortCountList, sortIndex, setSortRoutesList, sortRoutesList, changeSortList, getSortRoutesCount, seatSelection}) {
 
-
- export default function TicketsListSection ({routes, routesList, sortCountList, sortIndex, setSortRoutesList, sortRoutesList, changeSortList, getSortRoutesCount, seatSelection}) {
-
+  console.log(routesList);
   const SortCountItem = ({item, onClick}) => {
 		return(
 			<li className={sortIndex === item ? `limit selected` : 'limit'}
@@ -45,7 +45,7 @@ import Ticket from '../Ticket/Ticket';
     </header>
 
     {
-      routes.total_count > 0 ? 
+      routesList.total_count > 0 ? 
       <ul className="found-routes-list">
         {routesList.items.map((item, index) => {
           if(index < sortIndex) {
@@ -53,7 +53,7 @@ import Ticket from '../Ticket/Ticket';
           }	
         })}
       </ul>
-      : <PopupWindow text={'По выбранному направлению билетов нет. Попробуйте выбрать другое направление.'} isError={false}/>
+      : <PopupWindow text={'По выбранным параметрам билетов нет. Попробуйте выбрать другие параметры фильтра.'} isError={false}/>
       // пока не знаю как его закрыть
     }
 

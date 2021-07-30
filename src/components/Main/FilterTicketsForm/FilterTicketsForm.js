@@ -16,7 +16,9 @@ export default class FilterTicketsForm extends Component {
 					have_fourth_class: false,
 					have_wifi: false,
 					have_express: false,
-        } 
+        }
+				
+		this.routes = this.props.routes;
 
 		this.detailsList = [
 			{
@@ -93,10 +95,29 @@ export default class FilterTicketsForm extends Component {
 		}
 
 	
-		changeState = (name) => {
+		changeState = (name) => {			
 			this.setState((state) => {
 				return {[name]: !state[name]};	
 			})
+		}
+
+		getMinPrice = (arr) => {
+			if(arr.length > 0) {
+				let lowest = arr.reduce((lowest, item) => item.min_price < lowest.min_price ? item: lowest)
+				return lowest.min_price;
+			} else {
+				return 0;
+			}
+			
+		}
+
+		getMaxPrice = (arr) => {
+			if(arr.length > 0) {
+			let greatest = arr.reduce((greatest, item) => item.min_price > greatest.min_price ? item: greatest)
+			return greatest.min_price;
+			} else {
+				return 0;
+			}
 		}
 
 
@@ -172,8 +193,8 @@ export default class FilterTicketsForm extends Component {
 
 
 				<div className="cost-wrapper">
-					<span className="min-cost">1920</span>
-					<span className="max-cost">7000</span>
+					<span className="min-cost">{this.getMinPrice(this.routes.items)}</span>
+					<span className="max-cost">{this.getMaxPrice(this.routes.items)}</span>
 				</div>
 				
 			</div>

@@ -15,7 +15,42 @@ export default class BookingService {
         return await res.json();
     }
 
-    // postOrder(body) {
+
+    getCities(value) {
+        return this.getResource(`/routes/cities?name=${value}`);
+    }
+
+    getLastRoutes() {
+        return this.getResource('/routes/last');
+    }
+
+    getRoutes(body) {
+        // console.log(body);
+
+        let bodyString = [];
+
+        for(let key in body) {
+            
+            if(body[key]) {
+                if(key == 'from_city_id') {
+                    bodyString.push(`${[key]}=${body[key]}`);
+                } else {
+                    bodyString.push(`&${[key]}=${body[key]}`);
+                }     
+            }
+        }
+
+        return this.getResource(`/routes/?${bodyString.join('')}`);
+
+    }
+
+    getSeats(body) {
+        const {departure: {id, have_wifi, have_first_class, have_second_class, have_third_class, have_fourth_class, have_air_conditioning, have_express}} = body;
+
+        return this.getResource(`/routes/${id}/seats?have_wifi=${have_wifi}&have_first_class=${have_first_class}&have_second_class=${have_second_class}&have_third_class=${have_third_class}&have_fourth_class=${have_fourth_class}&have_air_conditioning=${have_air_conditioning}&have_express=${have_express}`);
+    }
+
+     // postOrder(body) {
     //     const res = fetch( `${this._apiBase}/order`, {
     //         method: 'POST',
     //         body: JSON.stringify({
@@ -57,68 +92,4 @@ export default class BookingService {
     //
     //     return res.json();
     // }
-
-    getCities(value) {
-        return this.getResource(`/routes/cities?name=${value}`);
-    }
-
-    getLastRoutes() {
-        return this.getResource('/routes/last');
-    }
-
-    getRoutes(body) {
-        const {from_city_id, to_city_id, date_start='', date_end='', sort = 'date',
-        have_first_class, have_second_class, have_third_class,
-        have_fourth_class, have_wifi, have_air_conditioning, have_express} = body;
-
-        // let bodyString = [];
-
-        // for(let key in body) {
-        //     if(body[key]) {
-        //         console.log(key);
-        //         bodyString.push(`&${[key]}=${body[key]}`);
-        //         console.log(bodyString);
-
-        //     }
-        // }
-
-        // return this.getResource(`/routes/?${bodyString.join('')}`);
-        return this.getResource(`/routes/?from_city_id=${from_city_id}&to_city_id=${to_city_id}&date_start=${date_start}&date_end=${date_end}&sort=${sort}`);
-
-    }
-
-    getSeats(body) {
-        const {departure: {id, have_wifi, have_first_class, have_second_class, have_third_class, have_fourth_class, have_air_conditioning, have_express}} = body;
-
-        return this.getResource(`/routes/${id}/seats?have_wifi=${have_wifi}&have_first_class=${have_first_class}&have_second_class=${have_second_class}&have_third_class=${have_third_class}&have_fourth_class=${have_fourth_class}&have_air_conditioning=${have_air_conditioning}&have_express=${have_express}`);
-    }
-
-
 }
-
-// const test = new TestApi();
-//
-// const testBody = {
-//     from_city_id: '1491',
-//     to_city_id: '1492',
-//     id: '10000',
-//     have_wifi: false
-// }
-//
-// test.getRoutes(testBody)
-//     .then(res => {
-//         console.log(res);
-//     })
-//
-//
-// test.getCities()
-//     .then(res => {
-//         console.log(res);
-//         // res.forEach(item => console.log(item.name));
-//     });
-//
-// test.getLastRoutes()
-//     .then(res => console.log(res));
-
-// test.getSeats(testBody)
-//     .then(res => console.log(res));

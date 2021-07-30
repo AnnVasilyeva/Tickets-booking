@@ -15,13 +15,15 @@ function App() {
   const [lastRoutes, setLastRoutes] = useState();
 
   const getRoutesObject = (newRoutes, history) => {
+    // console.log(history);
+    // console.log(newRoutes);
     setRoutes({routes: newRoutes});
 
     service.getLastRoutes()
       .then(res => setLastRoutes(res))
       .catch(error => console.log(error));
        
-      if(history) {history.push('/routes')};
+    if(history) {history.push('/routes')};
   };
 
     

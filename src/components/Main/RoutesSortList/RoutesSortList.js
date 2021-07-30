@@ -1,6 +1,7 @@
 import React from 'react';
 
 export default function RoutesSortList ({sortRoutesList, changeSortList}) {
+  // не работает сортиовка по стоимости, при передаче в запросе 'price' (как в документации)
   const sortItems = [{type: 'времени', sort: 'date'}, 
                     {type: 'стоимости', sort: 'price_min'}, 
                     {type: 'длительности', sort: 'duration'}];
