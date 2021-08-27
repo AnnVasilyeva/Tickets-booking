@@ -18,6 +18,7 @@ export default function MainOrderPage ({routes, lastRoutes}) {
 	const [sortRoutesList, setSortRoutesList] = useState({status: false, type: 'времени'});
 	const [isSeatSelectionSection, setIsSeatSelectionSection] = useState(false);
 	const [ticketSelection, setTicketSelection] = useState();
+	const [wagonsList, setWagonList] = useState([]);
 	// const [isPopup, setIsPopup] = useState(false); 
 	
 
@@ -67,9 +68,10 @@ export default function MainOrderPage ({routes, lastRoutes}) {
 	}
 
 // не работает, выдает либо пустой массив либо ошибку
+// проверка с местами по https://fe-diplom.herokuapp.com/routes/7150/seats?have_wifi=false
 	const seatSelection = (selectedTicket) => {
 		server.getSeats(selectedTicket)
-			.then(res => console.log(res))
+			.then(res => setWagonList(res))
 			.catch(error => console.log(error));
 		setTicketSelection(selectedTicket)
 		setIsSeatSelectionSection(true);
@@ -95,7 +97,7 @@ export default function MainOrderPage ({routes, lastRoutes}) {
 				</section>
 			</aside>
 		}
-			{isSeatSelectionSection && <SeatSelectionSection ticket={ticketSelection}/>}
+			{isSeatSelectionSection && <SeatSelectionSection ticket={ticketSelection} wagonsList={wagonsList}/>}
 			{routesList && routesList.total_count > 0 && !isSeatSelectionSection && 
 			<TicketsListSection routesList={routesList}
 													sortIndex={sortIndex}

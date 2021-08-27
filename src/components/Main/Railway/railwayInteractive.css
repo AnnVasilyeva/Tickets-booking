@@ -1,0 +1,148 @@
+.railway {
+  margin-left: 20px;
+  width: 921px;
+  height: 145px;
+  background-image: url("./images/railway.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.railway.fourth {
+  background-image: url("./images/fourth-railway.png");
+}
+
+.railway-number {
+  width: 34px;
+  height: 24px;
+  background-color: #333;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  padding-top: 3px;
+  box-sizing: border-box;
+  margin-left: 39px;
+}
+
+.railway-cover {
+  width: 713px;
+  height: 115px;
+  margin-left: 134px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.railway-seats-list {
+  padding-bottom: 2px;
+  display: flex;
+}
+
+.railway-seats-list.top-row {
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.top-row .railway-seats-block {
+  width: 56px;
+  height: 63px;
+  display: flex;
+  flex-direction: column-reverse;
+  flex-wrap: wrap;
+}
+
+.top-row .railway-seats-block:first-of-type:not(.fourth .top-row .railway-seats-block:first-of-type), 
+.top-row .railway-seats-block:last-of-type:not(.fourth .top-row .railway-seats-block:last-of-type) {
+  width: 26px;
+}
+
+.railway-seat {
+  width: 26px;
+  height: 28px;
+  padding-top: 8px;
+  background-color: #ccc;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.railway-seat.available {
+  background-color: #f2f2f2;
+  border: 2px solid #f2f2f2;
+  color: #000;
+  cursor: pointer;
+  padding-top: 5px;
+}
+
+.available:hover {
+  border-color: #FFA800;  
+}
+
+.railway-seats-list.bottom-row {
+  flex-direction: row;
+  background-color: #9a9a9a;
+
+}
+
+.bottom-row .railway-seat {
+  width: 44px;
+  height: 24px;
+  padding-top: 5px;
+}
+
+.bottom-row .railway-seat.available {
+  padding-top: 3px;
+}
+
+.bottom-row .railway-seats-block {
+  width: 86px;
+  display: flex;
+  flex-direction: row;
+  margin-right: 3px;
+}
+
+.railway.first .railway-seat {
+  height: 56px;
+  padding-top: 35px;
+}
+
+.railway.fourth .railway-seats-list {
+  padding-left: 10px;
+  align-items: center;
+}
+
+.railway.fourth .railway-seats-list {
+  height: 44px;
+}
+
+.railway.fourth .railway-seats-list.bottom-row {
+  background-color: #fff;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.railway.fourth .railway-seat {
+  margin-bottom: 3px;
+}
+
+.railway.fourth .top-row .railway-seat, 
+.railway.fourth .bottom-row .railway-seat {
+  width: 27px;
+  height: 19px;
+  padding-top: 2px;
+}
+
+.railway.fourth .railway-seat.available {
+  padding-top: 0;
+}
+
+.railway.fourth .bottom-row .railway-seats-block {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+
+
+

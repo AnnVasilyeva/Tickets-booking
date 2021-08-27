@@ -3,52 +3,8 @@ import WagonsInfo from './WagonsInfo';
 import FormattingData from '../../../services/formattingData';
 import TicketsCountForm from './TicketsCountForm';
 
-export default function SelectionPart ({routeInfo, className}) {
-  const wagonsList = [
-    {
-      "_id": "8957398547397",
-      "name": "07",
-      "class_type": "first",
-      "have_wifi": true,
-      "have_air_conditioning": true,
-      "price": 4920,
-      "top_price": 0,
-      "bottom_price": 0,
-      "side_price": 0,
-      "linens_price": 0,
-      "wifi_price": 0,
-      "avaliable_seats": 21,
-      "is_linens_included": true,
-      "seats": [
-        {
-          "index": 1,
-          "available": true
-        }
-      ]
-    },
-    {
-      "_id": "48309450438",
-      "name": "09",
-      "class_type": "second",
-      "have_wifi": true,
-      "have_air_conditioning": false,
-      "price": 4920,
-      "top_price": 2020,
-      "bottom_price": 3030,
-      "side_price": 0,
-      "linens_price": 0,
-      "wifi_price": 0,
-      "avaliable_seats": 18,
-      "is_linens_included": true,
-      "seats": [
-        {
-          "index": 1,
-          "available": true
-        }
-      ]
-    }
-  ]
-
+export default function SelectionPart ({routeInfo, className, wagonsList}) {
+  
   const formattingData = new FormattingData();
 
    return (
@@ -116,30 +72,7 @@ export default function SelectionPart ({routeInfo, className}) {
              <h3>Количество билетов</h3>
              <TicketsCountForm/>
            </section>
-
-           <section className='seat-selection-seat-type'>
-             <h3>Тип вагона</h3>
-             <ul className='seat-type-list'>
-               <li className='seat-type-item'>
-                <div><img src='/images/icon-fourth-class-grey.png' alt='icon-fourth-class'/></div>
-                <span>Сидячий</span>
-               </li>
-               <li className='seat-type-item'>
-                <div><img src='/images/icon-third-class-grey.png' alt='icon-third-class'/></div>
-                <span>Плацкарт</span>
-                </li>
-               <li className='seat-type-item'>
-                <div><img src='/images/icon-second-class-grey.png' alt='icon-second-class'/></div>
-                <span>Купе</span>
-               </li>
-               <li className='seat-type-item'>
-                <div><img src='/images/icon-first-class-grey.png' alt='icon-first-class'/></div>
-                <span>Люкс</span>
-               </li>
-             </ul>
-           </section> 
-
-           <WagonsInfo wagonsList={wagonsList}/> 
+           {wagonsList.length > 0 && <WagonsInfo wagonsList={wagonsList}/>}  
          </main>
        </div>
 

@@ -262,10 +262,15 @@
 
 .wagons-sort-list li {
  font-weight: 700;
+ cursor: pointer;
 }
 
 .wagons-sort-list li:not(:last-of-type) {
   margin-right: 5px;
+}
+
+.wagons-sort-list li.selected {
+  color: #fff;
 }
 
 .wagons-list {

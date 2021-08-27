@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
+import RailwayInteractive from '../Railway/RailwayInteractive';
 
 export default function WagonsInfo ({wagonsList}) {
   // console.log(wagonsList);
+
+  const [railwaySelected, setRailwaySelected] = useState(0);
 
   const FeaturesIcons = ({wagon}) => {
     const {have_wifi, have_air_conditioning, is_linens_included} = wagon;
@@ -103,67 +106,95 @@ export default function WagonsInfo ({wagonsList}) {
       </>
       )
     }
+    return null;
   }
 
-  const getWagonPicture = (classType) => {
-    switch(classType) {
-      case 'first': return '/images/wagon-first.png'
-      break;
-      case 'second': return '/images/wagon-second.png'
-      break;
-      case 'third': return '/images/wagon-third.png'
-      break;
-      case 'fourth': return '/images/wagon-fourth.png'
-      break;
-      default: return ''
-      break;
-    }
+  const WagonClassType = () => {
+    return (
+      <section className='seat-selection-seat-type'>
+             <h3>Тип вагона</h3>
+             <ul className='seat-type-list'>
+               <li className='seat-type-item'>
+                <div><img src='/images/icon-fourth-class-grey.png' alt='icon-fourth-class'/></div>
+                <span>Сидячий</span>
+               </li>
+               <li className='seat-type-item'>
+                <div><img src='/images/icon-third-class-grey.png' alt='icon-third-class'/></div>
+                <span>Плацкарт</span>
+                </li>
+               <li className='seat-type-item'>
+                <div><img src='/images/icon-second-class-grey.png' alt='icon-second-class'/></div>
+                <span>Купе</span>
+               </li>
+               <li className='seat-type-item'>
+                <div><img src='/images/icon-first-class-grey.png' alt='icon-first-class'/></div>
+                <span>Люкс</span>
+               </li>
+             </ul>
+      </section> 
+    )
   }
 
   return (
-    <section className='seat-selection-wagons-info'>
-      <header>
-        <div className='wagons-sort'>
-          <h4>Вагоны</h4>
-          <ul className='wagons-sort-list'>
-            {wagonsList.map((wagon) => <li key={wagon.id}>{wagon.name}</li>)}
-          </ul>
-        </div>
-        <div>Нумерация вагонов начинается с головы поезда</div>      
-      </header> 
-      <main>
-        <ul className='wagons-list'>
-        {wagonsList.map((wagon) => 
-        <li key={wagon.id} className='wagons-list-item'>
-          <div className='wagon-main-info'>
-            <div className='wagon-number'>
-              <span className='number'>{wagon.name}</span>
-              <span className='text'>вагон</span>
-            </div>
-            <table className='wagon-info-table'>
-              <thead>
-                <tr className='wagon-info-table-titles'>
-                  <td>Места<span>{wagon.avaliable_seats}</span></td>
-                  <td>Стоимость</td>
-                  <td>Обслуживание ФПК</td>
-                </tr>
-              </thead>
-              <tbody>
-                <WagonSeatsInfo classType={wagon.class_type} wagon={wagon}/>
-              </tbody>                           
-            </table>
-          </div>
-          
-          <div className='random-peoples-watch'><span>{Math.floor(Math.random() * (19 - 2 + 1)) + 2}</span> человек выбирают места в этом поезде</div>
-
-          <div className='wagon-picture'>
-            <img src={getWagonPicture(wagon.class_type)} alt='wagon seats'/>
-          </div>
-        </li>
-        )}
+  
+  <>
+  <WagonClassType />
+  <section className='seat-selection-wagons-info'>
+    <header>
+      <div className='wagons-sort'>
+        <h4>Вагоны</h4>
+        <ul className='wagons-sort-list'>
+          {wagonsList.map((wagon, index) => 
+          <li className={index === railwaySelected ? 'selected' : ''} 
+              key={wagon.coach._id} 
+              aria-hidden="true" 
+              onClick={() => setRailwaySelected(index)}
+          >{`0${index + 1}`}</li>)}
         </ul>
+      </div>
+      <div>Нумерация вагонов начинается с головы поезда</div>      
+    </header> 
+    <main>
+      <ul className='wagons-list'>
+      {wagonsList.map((wagon, index) => {
+        if(index === railwaySelected) {
+          return (
+          <li key={wagon.coach._id} className='wagons-list-item'>
+        <div className='wagon-main-info'>
+          <div className='wagon-number'>
+            <span className='number'>{`0${index + 1}`}</span>
+            <span className='text'>вагон</span>
+          </div>
+          <table className='wagon-info-table'>
+            <thead>
+              <tr className='wagon-info-table-titles'>
+                <td>Места<span>{wagon.coach.avaliable_seats}</span></td>
+                <td>Стоимость</td>
+                <td>Обслуживание ФПК</td>
+              </tr>
+            </thead>
+            <tbody>
+              <WagonSeatsInfo classType={wagon.coach.class_type} wagon={wagon.coach}/>
+            </tbody>                           
+          </table>
+        </div>
         
-      </main>
-    </section>  
-  )
-}
+        <div className='random-peoples-watch'><span>{Math.floor(Math.random() * (19 - 2 + 1)) + 2}</span> человек выбирают места в этом поезде</div>
+
+        <div className='wagon-picture'>
+          <RailwayInteractive railwayClass={wagon.coach.class_type} railwayNumber={index + 1} seats={wagon.seats}/>
+        </div>
+      </li>
+          )}
+      }       
+      )}
+      </ul>      
+    </main>
+  </section> 
+        </> 
+      )
+    }
+      
+    
+    
+  

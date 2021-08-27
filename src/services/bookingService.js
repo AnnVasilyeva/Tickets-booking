@@ -47,7 +47,9 @@ export default class BookingService {
     getSeats(body) {
         const {departure: {id, have_wifi, have_first_class, have_second_class, have_third_class, have_fourth_class, have_air_conditioning, have_express}} = body;
 
-        return this.getResource(`/routes/${id}/seats?have_wifi=${have_wifi}&have_first_class=${have_first_class}&have_second_class=${have_second_class}&have_third_class=${have_third_class}&have_fourth_class=${have_fourth_class}&have_air_conditioning=${have_air_conditioning}&have_express=${have_express}`);
+        // return this.getResource(`/routes/${id}/seats?have_wifi=${have_wifi}&have_first_class=${have_first_class}&have_second_class=${have_second_class}&have_third_class=${have_third_class}&have_fourth_class=${have_fourth_class}&have_air_conditioning=${have_air_conditioning}&have_express=${have_express}`);
+
+        return this.getResource(`/routes/7150/seats?have_wifi=false`);
     }
 
      // postOrder(body) {
