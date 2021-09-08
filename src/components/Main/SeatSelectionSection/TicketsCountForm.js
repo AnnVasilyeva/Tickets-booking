@@ -1,23 +1,26 @@
 import React, {useState} from 'react';
 
-export default function TicketsCountForm () {
+export default function TicketsCountForm ({changePassangersInfo}) {
   const [adult, setAdult] = useState('2');
   const [children, setChildren] = useState('0');
   const [childrenWithoutSeat, setChildrenWithoutSeat] = useState('0');
 
-  const handleChange = (value, state) => {
-    if(value < 0) {value = 0}
-    if(value > 9) {value = 9}
+  const handleChange = (e, state) => {
+    if(e.target.value < 0) {e.target.value = 0}
+    if(e.target.value > 9) {e.target.value = 9}
+    changePassangersInfo(e);
+
     switch(state) {
-      case 'setAdult': setAdult(value);
+      case 'adult': setAdult(e.target.value);
       break;
-      case 'setChildren': setChildren(value);
+      case 'children': setChildren(e.target.value);
       break;
-      case 'setChildrenWithoutSeat': setChildrenWithoutSeat(value);
+      case 'childrenWithoutSeat': setChildrenWithoutSeat(e.target.value);
       break;
       default: console.log('error');
       break;
     }
+
 
   }
 
@@ -27,7 +30,8 @@ export default function TicketsCountForm () {
         <span className='input-block'>
           Взрослых - 
           <input value={adult}
-               onChange={(e) => handleChange(e.target.value, 'setAdult')}
+               name='adult'
+               onChange={(e) => handleChange(e, 'adult')}
                type='number'
                className='input-value'/>
         </span> 
@@ -37,7 +41,8 @@ export default function TicketsCountForm () {
         <span className='input-block'>
           Детских - 
           <input value={children}
-               onChange={(e) => handleChange(e.target.value, 'setChildren')}
+               name='children'
+               onChange={(e) => handleChange(e, 'children')}
                type='number'
                className='input-value'/>
         </span>
@@ -47,7 +52,8 @@ export default function TicketsCountForm () {
         <span className='input-block'>
           Детских «без места» - 
           <input value={childrenWithoutSeat}
-               onChange={(e) => handleChange(e.target.value, 'setChildrenWithoutSeat')}
+               name='childrenWithoutSeat'
+               onChange={(e) => handleChange(e, 'childrenWithoutSeat')}
                type='number'
                className='input-value'/>
         </span>

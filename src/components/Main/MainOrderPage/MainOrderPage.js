@@ -19,6 +19,7 @@ export default function MainOrderPage ({routes, lastRoutes}) {
 	const [isSeatSelectionSection, setIsSeatSelectionSection] = useState(false);
 	const [ticketSelection, setTicketSelection] = useState();
 	const [wagonsList, setWagonList] = useState([]);
+	const [lastRoutesView, setLastRoutesView] = useState(false);
 	// const [isPopup, setIsPopup] = useState(false); 
 	
 
@@ -27,6 +28,8 @@ export default function MainOrderPage ({routes, lastRoutes}) {
 			setRoutesList(routes);
 		}	
 	})
+
+	const railwaySelectionInfo = (body) => console.log(body);
 
 	const shallowEqual = (object1, object2) => {
 		const keys1 = Object.keys(object1);
@@ -86,18 +89,20 @@ export default function MainOrderPage ({routes, lastRoutes}) {
 			<aside className="order-page-sidebar">					
 				<FilterTicketsForm changeRoutesList={changeRoutesList} routes={routesList}/>
 				<section className="sidebar-last-tickets">
-				<h2>последние билеты</h2>
+				<h2 aria-hidden="true" onClick={()=>setLastRoutesView(!lastRoutesView)}>последние билеты</h2>
+				{lastRoutesView && 
 				<ul className="last-tickets-list">
-					{lastRoutes && lastRoutes.map((item,index) => {
-						if(index <= 2) {
-							return <LastTicket key={index} item={item}/>
-						}
-					})}						
-				</ul>
+				{lastRoutes && lastRoutes.map((item,index) => {
+					if(index <= 2) {
+						return <LastTicket key={index} item={item}/>
+					}
+				})}						
+			</ul>}
 				</section>
 			</aside>
 		}
-			{isSeatSelectionSection && <SeatSelectionSection ticket={ticketSelection} wagonsList={wagonsList}/>}
+			{isSeatSelectionSection && <SeatSelectionSection ticket={ticketSelection} wagonsList={wagonsList}
+			railwaySelectionInfo={railwaySelectionInfo}/>}
 			{routesList && routesList.total_count > 0 && !isSeatSelectionSection && 
 			<TicketsListSection routesList={routesList}
 													sortIndex={sortIndex}

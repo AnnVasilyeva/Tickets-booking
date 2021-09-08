@@ -133,6 +133,11 @@
 	font-weight: 500;
 	color: #000;
 	margin-bottom: 26px;
+	cursor: pointer;
+}
+
+.sidebar-last-tickets h2:hover {
+	color: #FFA800;
 }
 
 .last-tickets-list {

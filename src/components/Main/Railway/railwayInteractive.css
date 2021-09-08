@@ -80,6 +80,10 @@
   border-color: #FFA800;  
 }
 
+.railway-seat.selected {
+  border-color: #FFA800;
+}
+
 .railway-seats-list.bottom-row {
   flex-direction: row;
   background-color: #9a9a9a;

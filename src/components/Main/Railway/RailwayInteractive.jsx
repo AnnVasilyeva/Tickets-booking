@@ -6,7 +6,7 @@ import RailwaySecond from './RailwaySecond';
 import RailwayThird from './RailwayThird';
 
 
-export default function RailwayInteractive ({railwayClass, railwayNumber, seats}) {
+export default function RailwayInteractive ({railwayClass, railwayNumber, seats, seatsListChange}) {
 
   const seatsAvailable = seats.map((seat) => {
     if(seat.available) {
@@ -19,10 +19,10 @@ export default function RailwayInteractive ({railwayClass, railwayNumber, seats}
     <div className={`railway ${railwayClass}`}>
       <div className='railway-number'>{railwayNumber}</div>
       <div className='railway-cover'>
-        {railwayClass === 'first' && <RailwayFirst seatsAvailable={seatsAvailable}/>}
-        {railwayClass === 'second' && <RailwaySecond seatsAvailable={seatsAvailable}/>}
-        {railwayClass === 'third' && <RailwayThird seatsAvailable={seatsAvailable}/>}
-        {railwayClass === 'fourth' && <RailwayFourth seatsAvailable={seatsAvailable}/>}
+        {railwayClass === 'first' && <RailwayFirst seatsAvailable={seatsAvailable} seatsListChange={seatsListChange}/>}
+        {railwayClass === 'second' && <RailwaySecond seatsAvailable={seatsAvailable} seatsListChange={seatsListChange}/>}
+        {railwayClass === 'third' && <RailwayThird seatsAvailable={seatsAvailable} seatsListChange={seatsListChange}/>}
+        {railwayClass === 'fourth' && <RailwayFourth seatsAvailable={seatsAvailable} seatsListChange={seatsListChange}/>}
       </div>
       
     </div>

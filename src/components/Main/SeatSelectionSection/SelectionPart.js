@@ -3,9 +3,14 @@ import WagonsInfo from './WagonsInfo';
 import FormattingData from '../../../services/formattingData';
 import TicketsCountForm from './TicketsCountForm';
 
-export default function SelectionPart ({routeInfo, className, wagonsList}) {
+export default function SelectionPart ({routeInfo, className, wagonsList, changeStatePassangers,
+  changeStateSelectedSeats}) {
   
   const formattingData = new FormattingData();
+
+  const changePassangersInfo = (e) => changeStatePassangers(e);
+
+  const changeSeatsInfo = (seatsList) => changeStateSelectedSeats(seatsList);
 
    return (
        <div className={`seat-selection-part ${className}`}>
@@ -70,9 +75,9 @@ export default function SelectionPart ({routeInfo, className, wagonsList}) {
 
            <section className='seat-selection-ticket-count'>
              <h3>Количество билетов</h3>
-             <TicketsCountForm/>
+             <TicketsCountForm changePassangersInfo={changePassangersInfo}/>
            </section>
-           {wagonsList.length > 0 && <WagonsInfo wagonsList={wagonsList}/>}  
+           {wagonsList.length > 0 && <WagonsInfo wagonsList={wagonsList} changeSeatsInfo={changeSeatsInfo}/>}  
          </main>
        </div>
 
