@@ -11,7 +11,8 @@ export default class SeatSelectionSection extends Component {
       adult: '2',
       children: '0',
       childrenWithoutSeat: '0',
-      selectedSeats: []
+      selectedSeats: [],
+      departure: props.ticket.departure
     }
     this.departure = props.ticket.departure;
     // this.arrival = props.ticket.arrival;
@@ -26,8 +27,7 @@ export default class SeatSelectionSection extends Component {
   }
 
   nextPage = () => {
-    console.log(this.state)
-    // this.props.railwaySelectionInfo(this.state);
+    this.props.railwaySelectionInfo(this.state);
   }
 
   render() {

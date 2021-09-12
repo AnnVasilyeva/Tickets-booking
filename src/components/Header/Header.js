@@ -44,7 +44,7 @@ export default function Header (props) {
             <SearchTicketsForm addRoutes={addRoutes}/>
         </div>
     <div className="header-progressbar">
-        {props.isOrderPage && <Progressbar/>}
+        {props.isOrderPage && <Progressbar isPassangerPage={props.isPassangerPage}/>}
     </div>
     </header>
 

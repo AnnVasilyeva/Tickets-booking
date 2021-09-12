@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 
 export default function Seat ({seatsAvailable, number, seatsListChange}) {
+  
   const [selectedSeat, setSelectedSeat] = useState(false);
   const isAvailable = () => seatsAvailable.includes(number);
 

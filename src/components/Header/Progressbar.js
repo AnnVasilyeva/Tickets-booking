@@ -1,4 +1,4 @@
-export default function Progressbar () {
+export default function Progressbar ({isPassangerPage}) {
     return (
         <div className="bx-pager bx-default-pager">
 
@@ -10,7 +10,7 @@ export default function Progressbar () {
                 <div className="arrow"></div>
             </div>
 
-            <div className="bx-pager-item">
+            <div className={isPassangerPage ? "bx-pager-item active" : "bx-pager-item"}>
                 <div className="bx-pager-link"> 
                     <span className="progressbar-item-number">2</span>
                     <span className="progressbar-item-name">Пассажиры</span>

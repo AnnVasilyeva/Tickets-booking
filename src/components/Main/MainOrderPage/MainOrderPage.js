@@ -8,7 +8,7 @@ import SeatSelectionSection from '../SeatSelectionSection/SeatSelectionSection';
 import PopupWindow from '../../PopupWindow/PopupWindow';
 import { findLastKey } from 'lodash';
 
-export default function MainOrderPage ({routes, lastRoutes}) {
+export default function MainOrderPage ({routes, lastRoutes, getPassangersPage, history}) {
 	// При выборе направления выдает (например) total_count: 13, но в массиве всего 5 билетов. Как проверять сортировку?
 
 	const server = new BookingService();
@@ -20,16 +20,15 @@ export default function MainOrderPage ({routes, lastRoutes}) {
 	const [ticketSelection, setTicketSelection] = useState();
 	const [wagonsList, setWagonList] = useState([]);
 	const [lastRoutesView, setLastRoutesView] = useState(false);
+	
 	// const [isPopup, setIsPopup] = useState(false); 
 	
 
 	useEffect(() => {
 		if(!shallowEqual(routesList, routes) && shallowEqual(routesList, {})) {
 			setRoutesList(routes);
-		}	
+		}
 	})
-
-	const railwaySelectionInfo = (body) => console.log(body);
 
 	const shallowEqual = (object1, object2) => {
 		const keys1 = Object.keys(object1);
@@ -44,6 +43,10 @@ export default function MainOrderPage ({routes, lastRoutes}) {
 		}		
 		return true;
 	}
+
+	const railwaySelectionInfo = (body) => {
+		getPassangersPage(body, history)
+	};
 
 	const getSortRoutesCount = (index) => {
 			setSortIndex(index);

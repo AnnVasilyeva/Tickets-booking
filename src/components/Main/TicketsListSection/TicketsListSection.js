@@ -5,7 +5,7 @@ import PopupWindow from '../../PopupWindow/PopupWindow';
 
  export default function TicketsListSection ({routesList, sortCountList, sortIndex, setSortRoutesList, sortRoutesList, changeSortList, getSortRoutesCount, seatSelection}) {
 
-  console.log(routesList);
+  // console.log(routesList);
   const SortCountItem = ({item, onClick}) => {
 		return(
 			<li className={sortIndex === item ? `limit selected` : 'limit'}
