@@ -235,10 +235,14 @@ input:checked + .slider:before {
 .time-filter {
 	padding: 27px 34px 34px 32px;
 	border-bottom: 1px solid #E5E5E5;
+	
+
+}
+
+.time-filter-top, .time-filter-bottom {
 	display: flex;
 	justify-content: space-between;	
 	align-items: center;
-
 }
 
 

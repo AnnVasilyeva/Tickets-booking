@@ -200,23 +200,27 @@ export default class FilterTicketsForm extends Component {
 			</div>
 			
 			<div className="time-filter departure-time-filter">
-				<div className="time-filter-title departure-time-filter-title">
-					<div className="time-icon departure-time-icon">
-						<img src="/images/icon-departure.png" alt="icon arrow-right"/>
+				<div className="time-filter-top">
+					<div className="time-filter-title departure-time-filter-title">
+						<div className="time-icon departure-time-icon">
+							<img src="/images/icon-departure.png" alt="icon arrow-right"/>
+						</div>
+						<div className="time-name">Туда</div>
 					</div>
-					<div className="time-name">Туда</div>
+					<div className="time-filter-btn departure-time-filter-btn"></div>
 				</div>
-				<div className="time-filter-btn departure-time-filter-btn"></div>
 			</div>
 			
 			<div className="time-filter arrival-time-filter">
-				<div className="time-filter-title arrival-time-filter-title">
-					<div className="time-icon arrival-time-icon">
-						<img src="/images/icon-arrival.png" alt="icon arrow-left"/>
+				<div className="time-filter-top">
+					<div className="time-filter-title arrival-time-filter-title">
+						<div className="time-icon arrival-time-icon">
+							<img src="/images/icon-arrival.png" alt="icon arrow-left"/>
+						</div>
+						<div className="time-name">Обратно</div>
 					</div>
-					<div className="time-name">Обратно</div>
+					<div className="time-filter-btn arrival-time-filter-btn"></div>
 				</div>
-				<div className="time-filter-btn arrival-time-filter-btn"></div>
 			</div>
 			
 		</section>

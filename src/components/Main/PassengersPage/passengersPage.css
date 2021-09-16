@@ -17,6 +17,212 @@
   box-sizing: border-box;
 }
 
-.order-page-passengers-info {
-  width: 959px;
+.time-filter-bottom {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
 }
+
+.time-filter-bottom .trip-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.time-filter-bottom .city-name {
+  display: flex;
+  flex-direction: column;
+}
+
+.time-filter-bottom .city-info {
+  margin-top: 22px;
+}
+
+.time-filter-bottom .duration-info {
+  align-self: center;
+  margin-top: 45px;
+}
+
+.time-filter-bottom .time-info div {
+  display: flex;
+  flex-direction: column;
+}
+
+.trip-info .datetime-to, .trip-info .railway_to { 
+  align-items: flex-end;
+}
+
+.trip-info .datetime-from, .trip-info .railway_from {  
+  align-items: flex-start;
+}
+
+.time-filter-bottom .railway-info {
+  margin-top: 17px;
+}
+
+.time-filter-bottom .railway-info div {
+  display: flex;
+  flex-direction: column;
+}
+
+.railway-info .railway-station, 
+.time-info .datetime-date {
+  color: #928F94;
+}
+
+.passengers-type {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #E5E5E5;
+  margin-bottom: 15px;
+}
+
+.ticket-price {
+  display: flex;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  color: #fff;
+}
+
+.ticket-price .value-image {
+  width: 14px;
+  height: 17px;
+  margin-left: 7px;
+  
+}
+
+.ticket-price .value-image img {
+  width: 14px;
+  height: 17px;
+}
+
+
+.summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summary span:first-of-type {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  text-transform: uppercase;
+  color: #FFF;
+}
+
+.summary-value {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  color: #FFA800;
+
+}
+
+.summary .ticket-price {
+  align-items: center;
+}
+
+.summary .value-image {
+  width: 26px;
+  height: 32px;
+  margin-left: 7px;
+}
+
+.summary .value-image img {
+  width: 26px;
+  height: 32px;
+}
+
+
+/* Информация о пассажирах */
+
+.order-page-passengers-info {
+  width: 960px;
+  display: flex;
+  flex-direction: column;
+}
+
+.passenger-item {
+  width: 100%;
+  background-color: #FFF;
+  border: 1px solid #C4C4C4;
+  box-sizing: border-box;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  margin-bottom: 45px;
+}
+
+.passenger-item-top {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 32px 26px;
+}
+
+.passenger-item-top_title {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  color: #292929;
+  margin-left: 16px;
+
+}
+
+.passenger-item-top_btn {
+  width: 32px;
+  height: 32px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 32px;
+
+}
+
+.passenger-item-top_btn.passenger-open {
+  background-image: url('./passenger-image/open-passenger-btn.png');
+}
+
+.passenger-item-top_btn.passenger-close {
+  background-image: url('./passenger-image/close-passenger-btn.png');
+}
+
+.order-page-passengers-btn {
+  align-self: flex-end;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 15px 70px;
+  background-color: #928F94;
+  border: 1px solid #928F94;
+  border-radius: 5px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.order-page-passengers-btn.active {
+  background-color: #FFA800;
+  border-color: #FFA800;
+}
+
+.order-page-passengers-btn.active:hover {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.order-page-passengers-btn.active:focus {
+  color: #FFA800;
+  background-color: #fff;
+}
+

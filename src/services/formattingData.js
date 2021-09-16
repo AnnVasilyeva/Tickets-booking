@@ -32,15 +32,19 @@ export default class FormattingData {
         ]; 
     }
 
-    // getFeaturesList (departure) {
-        
-
-    // }
     
     ucFirst (str) {
         if (!str) return str;
       
         return str[0].toUpperCase() + str.slice(1);
+    }
+
+    getDateTime (timeMs) {
+        const date = new Date(timeMs * 1000);
+        const day = date.getDate();
+        const mounth = date.getMonth() + 1;
+        const year = date.getFullYear();
+        return `${day < 10 ? `0${day}` : day}.${mounth < 10 ? `0${mounth}` : mounth}.${year}`
     }
 
     formattedDatetime (timeMs) {
