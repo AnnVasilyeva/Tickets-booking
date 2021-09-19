@@ -49,10 +49,7 @@ export default class PassengersPage extends Component {
     const {departureInfo, arrivalInfo, passengersInfo, passengersList} = this.state;
     const {adult, children, selectedSeats, departure: {from, to, min_price}} = this.props.ticketsInfo;
     const {getDateTime} = this.formattingData;
-
     
-
-    console.log(passengersList);
     return (
       <div className="container-order-page">
       
@@ -158,11 +155,11 @@ export default class PassengersPage extends Component {
         <section className="order-page-passengers-info">
           <div className='order-page-passengers-list'>
             {passengersList.map((seat, index) => 
-            <div className='passenger-item' key={seat.seat}
-                 aria-hidden='true' 
-                 onClick={()=> this.changePassengerItem(index)}>
+            <div className='passenger-item' key={seat.seat}>
               <div className='passenger-item-top'>
-                <div className={`passenger-item-top_btn ${seat.isOpen ? 'passenger-close' : 'passenger-open'}`}></div>
+                <div className={`passenger-item-top_btn ${seat.isOpen ? 'passenger-close' : 'passenger-open'}`}
+                    aria-hidden='true' 
+                    onClick={()=> this.changePassengerItem(index)}></div>
                 
                 <div className='passenger-item-top_title'>Пассажир {index + 1}</div>
               </div> 

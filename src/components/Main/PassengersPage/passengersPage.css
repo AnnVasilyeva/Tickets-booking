@@ -166,6 +166,7 @@
   justify-content: flex-start;
   align-items: center;
   padding: 32px 26px;
+  background-color: #F9F9F9;
 }
 
 .passenger-item-top_title {
@@ -225,4 +226,201 @@
   color: #FFA800;
   background-color: #fff;
 }
+
+/* FormPassenger */
+
+.passenger-form-wrapper {
+  padding-top: 38px;
+  padding-bottom: 28px;
+  background-color: #fff;
+  border-top: 1px dashed #928F94;
+}
+
+.passenger-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.passenger-form-section {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 45px;
+  padding-left: 35px;
+  padding-right: 35px;
+  
+}
+
+.passenger-form-section input, .passenger-form-section select {
+  height: 50px;
+  font-weight: normal;
+  font-size: 24px;
+  color: #292929;
+  padding: 12px 15px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid #928F94;
+}
+
+.passenger-form-section select {
+  padding: 10px 13px;
+}
+
+.passenger-name-section div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: 25px;
+}
+
+.passenger-name-section div:last-of-type {
+  margin-right: 0;
+}
+
+.passenger-name-section input {
+  width: 280px;
+}
+
+.passenger-gender-section div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: 25px;
+}
+
+.passenger-gender-section .switch {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  height: 50px;
+}
+
+.passenger-gender-section .switch input {display:none;}
+
+/* The slider */
+.passenger-gender-section .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border: 1px solid #928F94;
+  border-radius: 5px;
+  
+}
+
+.passenger-gender-section .slider:before {
+  position: absolute;
+  content: "";
+  height: 48px;
+  width: 100px;
+  border: 1px solid #928F94;
+  border-radius: 5px;
+  bottom: -1px;
+  background-color: #FFA800;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.passenger-gender-section input:checked + .slider {
+  background-color: #fff;
+}
+
+.passenger-gender-section input:focus + .slider {
+  background-color: #FFA800;
+}
+
+.passenger-gender-section input:checked + .slider:before {
+  -webkit-transform: translateX(100px);
+  -ms-transform: translateX(100px);
+  transform: translateX(100px);
+  background-color: #FFA800;
+
+
+}
+
+.passenger-gender-section .gender-button-wrapper {
+  flex-direction: row;
+  
+}
+
+.gender-button-wrapper .gender-btn {
+  width: 100px;
+  height: 50px;
+  border: 1px solid #928F94;
+  box-sizing: border-box;
+  font-weight: 900;
+  font-size: 30px;
+  text-transform: uppercase;
+  color: #000000;
+  background-color: #fff;
+  cursor: pointer; 
+}
+
+.gender-button-wrapper .gender-btn.selected {
+  background-color: #FFA800; 
+}
+
+.gender-button-wrapper .gender-btn:hover {
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.gender-btn-left {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.gender-btn-right {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px; 
+}
+
+.passenger-document_type-section {
+  padding: 37px 0 33px;
+  border-top: 1px dashed #928F94;
+  border-bottom: 1px dashed #928F94;
+  justify-content: flex-start;
+
+}
+
+.passenger-document_type-section div { 
+  margin-left: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  
+}
+
+.passenger-document_type-section input {
+  width: 205px;
+  
+}
+
+
+.gender-section-datepicker input {
+  width: 240px;
+  display: block;
+  
+}
+
+.passenger-form label, .gender-lable {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: #928F94;
+  margin-bottom: 8px;
+}
+
+.passenger-form label.isInvalid {
+  font-size: 18px;
+  color: #292929;
+  margin-bottom: 0;
+}
+
 
