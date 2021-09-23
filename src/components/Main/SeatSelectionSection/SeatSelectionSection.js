@@ -31,6 +31,7 @@ export default class SeatSelectionSection extends Component {
   }
 
   render() {
+    const {selectedSeats, adult, children} = this.state;
     return (
       <>
       {this.props.wagonsList.length > 0 ? 
@@ -44,7 +45,7 @@ export default class SeatSelectionSection extends Component {
                       changeStateSelectedSeats={this.changeStateSelectedSeats}/> 
           
           {/* <SelectionPart routeInfo={arrival} className={'seat-selection-arrival'}/> */}
-          <button type='button' className='next-page-btn'
+          <button type='button' className={`next-page-btn ${selectedSeats.length === Number(adult) + Number(children) && 'active'}`}
             onClick={()=> this.nextPage()}
           >Далее</button>
       </section>

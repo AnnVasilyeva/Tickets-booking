@@ -3,6 +3,7 @@ import './passengersPage.css';
 import FormattingData from "../../../services/formattingData";
 import AsideTrainInfo from "./AsideTrainInfo";
 import FormPassenger from "./FormPassenger";
+import PaymentForm from "./PaymentForm";
 
 export default class PassengersPage extends Component {
   constructor(props) {
@@ -16,10 +17,38 @@ export default class PassengersPage extends Component {
           seat: seat,
           isOpen: false
         }
-      })
+      }),
+      formPassengersList: []
     }
 
     this.formattingData = new FormattingData();
+
+  }
+
+  changeFormPassengersList = (passenger) => {
+    // console.log(passenger);
+    let formPassengersList = [...this.state.formPassengersList];
+    
+    if(formPassengersList.length > 0) {
+
+      if (!formPassengersList.find(prevPassenger => prevPassenger.seat == passenger.seat)) {
+        formPassengersList.push(passenger);
+      } else {
+        formPassengersList = formPassengersList.map(prevPassenger => {
+          if(prevPassenger.seat === passenger.seat) {
+            return passenger
+          }  else {return prevPassenger}
+        });
+      }
+
+      this.setState({formPassengersList: formPassengersList});
+      
+
+    } else {
+      this.setState({formPassengersList: [...formPassengersList, passenger]});
+    }
+
+    
 
   }
 
@@ -44,15 +73,18 @@ export default class PassengersPage extends Component {
     return (price * (adult + children));
   }
 
+  getVerification = (state) => {
+    this.props.getVerificationPage(state, this.props.history);
+  }
+
   render() {
-    
-    const {departureInfo, arrivalInfo, passengersInfo, passengersList} = this.state;
-    const {adult, children, selectedSeats, departure: {from, to, min_price}} = this.props.ticketsInfo;
+    const {departureInfo, arrivalInfo, passengersInfo, passengersList, formPassengersList} = this.state;
+    const {adult, children, departure: {from, to, min_price}} = this.props.ticketsInfo;
     const {getDateTime} = this.formattingData;
     
     return (
-      <div className="container-order-page">
-      
+      // <div className={`container-order-page ${!this.props.isPayment && 'passenger-page-sidebar'}`}>
+      <div className='container-order-page passenger-page-sidebar'>
         <aside className="order-page-sidebar">					
           <h2>Детали поездки</h2>
           <section className="time-filter departure-time-filter">
@@ -151,31 +183,52 @@ export default class PassengersPage extends Component {
         
       </section>
 
-        </aside>
-        <section className="order-page-passengers-info">
-          <div className='order-page-passengers-list'>
-            {passengersList.map((seat, index) => 
-            <div className='passenger-item' key={seat.seat}>
-              <div className='passenger-item-top'>
-                <div className={`passenger-item-top_btn ${seat.isOpen ? 'passenger-close' : 'passenger-open'}`}
-                    aria-hidden='true' 
-                    onClick={()=> this.changePassengerItem(index)}></div>
-                
-                <div className='passenger-item-top_title'>Пассажир {index + 1}</div>
-              </div> 
-              {seat.isOpen && 
-                <FormPassenger/>
-              }    
-            </div>
-            )}
+    </aside>
+    <section className={`order-page-passengers-info ${this.props.isPayment && 'order-page-payment-page'} ${this.props.isVerification && 'order-page-verification-page'}`}>
+      {!this.props.isPayment && 
+      <>
+      <div className='order-page-passengers-list'>
+      {passengersList.map((seat, index) => 
+      <div className='passenger-item' key={seat.seat}>
+        <div className={seat.isOpen ? 'passenger-item-top open' : 'passenger-item-top'}>
+          <div>
+            <div className={`passenger-item-top_btn ${seat.isOpen ? 'passenger-close' : 'passenger-open'}`}
+                aria-hidden='true' 
+                onClick={()=> this.changePassengerItem(index)}></div>
             
-          </div>
-          <button className='order-page-passengers-btn'>Далее</button>
-        </section>
+            <div className='passenger-item-top_title'>Пассажир {index + 1}</div>
+          </div>  
+          {seat.isOpen && <div className='delete-passenger-btn'
+          aria-hidden='true' onClick={() => this.changePassengerItem(index)}></div>}
+        </div> 
+        {seat.isOpen && 
+          <FormPassenger seat={seat.seat} changeFormPassengersList={this.changeFormPassengersList}/>
+        }    
+      </div>
+      )}
+      
+    </div>
+    <button className={`order-page-passengers-btn ${passengersList.length === formPassengersList.length && 'active'}`}
+    onClick={() => this.props.getPaymentPage(formPassengersList, this.props.ticketsInfo, this.props.history)}
+    >Далее</button>
+    </>
+    }
+    {this.props.isPayment && !this.props.isVerification && <PaymentForm getVerification={this.getVerification}/>}
+    {this.props.isVerification && 
+      <>
+        <section>Train</section>
+        <section>Passengers</section>
+        <section>Payment</section>
+        <section>Button</section>
+
+      </>
+    }
+      
+    </section>
       
         	
       
-      </div>	
+    </div>	
     )
   }
 }

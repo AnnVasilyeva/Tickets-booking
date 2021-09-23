@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { defaultStyles } from 'react-select/src/styles';
+// import DatePicker from "react-datepicker";
+// import "react-datepicker/dist/react-datepicker.css";
 
 
 export default class FormPassenger extends Component {
@@ -19,34 +18,19 @@ export default class FormPassenger extends Component {
       document_series: "",
       document_number: "",
       // document_data: `${this.state.document_series} ${this.state.document_number}`,
-      isInvalid: false
+      isInvalid: false,
+      seat: this.props.seat,
+      isValid: false,
     }
+
+    this.changeFormPassengersList = this.props.changeFormPassengersList;
+
+    
   }
 
-
-  componentDidUpdate(prevProps, prevState) {
-    // if (!this.shallowEqual(prevState, this.state)) {
-    //   this.props.changeRoutesList(this.state);
-    // }
-  }
-
-  shallowEqual(object1, object2) {
-    const keys1 = Object.keys(object1);
-    const keys2 = Object.keys(object2);		
-    if (keys1.length !== keys2.length) {
-      return false;
-    }		
-    for (let key of keys1) {
-      if (object1[key] !== object2[key]) {
-        return false;
-      }
-    }		
-    return true;
-  }
 
 
   onChangeState = (event) => {
-    // console.log(event.target.name);			
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
@@ -56,14 +40,22 @@ export default class FormPassenger extends Component {
     });
   }
 
+  
+
+  onSubmitFormInList = (e) => {
+    e.preventDefault();
+    this.setState({isValid: true});
+    this.changeFormPassengersList(this.state); 
+    
+  }
+
 
   render() {
-    console.log(this.state);
-    const {person_type, first_name, last_name, patronymic, gender, birthday, document_type, isInvalid, document_series, document_number} = this.state;
+    const {person_type, first_name, last_name, patronymic, gender, birthday, document_type, isInvalid, document_series, document_number, isValid} = this.state;
 
     return(
       <div className='passenger-form-wrapper'>
-        <form className='passenger-form'>
+        <form className='passenger-form' onSubmit={this.onSubmitFormInList}>
           <div className='passenger-form-section passenger-type-section'>
             <label htmlFor='person_type' className='hidden'>Тип пассажира</label>
             <select id='person_type' name='person_type' value={person_type} onChange={this.onChangeState} onBlur={this.onChangeState}>
@@ -75,17 +67,20 @@ export default class FormPassenger extends Component {
           <div className='passenger-form-section passenger-name-section'>
             <div>
               <label htmlFor='last_name'>Фамилия</label>
-              <input id='last_name' name='last_name' type='text' value={last_name} onChange={this.onChangeState} required/> 
+              <input id='last_name' name='last_name' type='text' value={last_name} onChange={this.onChangeState} required
+              pattern='[a-zA-Zёа-яЁА-Я]+'/> 
             </div>
             
             <div>
               <label htmlFor='first_name'>Имя</label>
-              <input id='first_name' name='first_name' type='text' required value={first_name} onChange={this.onChangeState}/>
+              <input id='first_name' name='first_name' type='text' required value={first_name} onChange={this.onChangeState}
+              pattern='[a-zA-Zёа-яЁА-Я]+'/>
             </div>
              
             <div>
               <label htmlFor='patronymic'>Отчество</label>
-              <input id='patronymic' name='patronymic' type='text' required value={patronymic} onChange={this.onChangeState}/> 
+              <input id='patronymic' name='patronymic' type='text' required value={patronymic} onChange={this.onChangeState}
+              pattern='[a-zA-Zёа-яЁА-Я]+'/> 
             </div>
             
           </div>
@@ -133,15 +128,43 @@ export default class FormPassenger extends Component {
             {document_type === "паспорт" && 
               <div>
                 <label htmlFor='document_series'>Серия</label>
-                <input id='document_series' name='document_series' type='text' placeholder='_ _ _ _' required value={document_series} onChange={this.onChangeState}/>
+                <input id='document_series' 
+                      name='document_series'
+                      type='text'
+                      placeholder='_ _ _ _'
+                      required 
+                      value={document_series} 
+                      onChange={this.onChangeState}
+                      pattern='[0-9]+'
+                      minLength='4'
+                      maxLength='4'
+                      />
               </div>
            }
             
             <div>
               <label htmlFor='document_number'>Номер</label>
-              <input id='document_number' name='document_number' type='text' placeholder={document_type === "паспорт" ? '_ _ _ _ _ _' : '12 символов'} required value={document_number} onChange={this.onChangeState}/>
+              <input id='document_number' 
+                      name='document_number' 
+                      type='text' 
+                      placeholder={document_type === "паспорт" ? '_ _ _ _ _ _' : 'VII-АП-123456'} 
+                      required 
+                      value={document_number} 
+                      onChange={this.onChangeState}
+                      pattern={document_type === "паспорт" ? '[0-9]+' : '^[IVX]{1,4}[- ]*[а-яёА-ЯЁ]{2}[- ]*[0-9]{6}$'}
+                      minLength={document_type === "паспорт" ? '6' : ''}
+                      maxLength={document_type === "паспорт" ? '6' : ''}/>
             </div>
 
+          </div>
+
+          <div className={`next-passenger-form-btn ${isValid && 'done'}`}>
+            {isValid && 
+            <div className='done-icon'>
+              <img src='/images/icon-done.png' alt='icon done'/>
+              <span>Готово</span>
+            </div>}
+            <input type='submit' value='Следующий пассажир'/>
           </div>
         </form>     
       </div>

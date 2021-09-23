@@ -489,15 +489,20 @@
   font-family: inherit;
   text-align: center;
   text-transform: uppercase;
-  color: #FFFFFF;
-  background-color: #FFA800;
+  background-color: #928F94;
+  border: 1px solid #928F94;
   border-radius: 5px;
   box-sizing: border-box;
   outline: none;
-  border: none;
+  color: #FFFFFF;
   padding: 15px 70px;
   float: right;
   margin-top: 90px;
+}
+
+.next-page-btn.active {
+  background-color: #FFA800;
+  border: none;
 }
 
 .next-page-btn:hover {
