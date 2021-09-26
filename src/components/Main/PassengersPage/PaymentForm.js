@@ -5,11 +5,11 @@ import './paymentForm.css';
   constructor(props) {
     super(props);
     this.state = {
-      first_name: "Анна",
-      last_name: "Васильева",
-      patronymic: "Юрьевна",
-      phone: "+79121658243",
-      email: "skazka@test.ru",
+      first_name: "",
+      last_name: "",
+      patronymic: "",
+      phone: "",
+      email: "",
       payment_method: "cash"
     }
   }
