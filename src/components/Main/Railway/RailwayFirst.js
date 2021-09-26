@@ -1,4 +1,3 @@
-import { func } from 'assert-plus'
 import React from 'react';
 import Seat from './Seat';
 

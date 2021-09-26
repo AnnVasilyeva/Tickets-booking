@@ -11,24 +11,6 @@ import SuccessfulOrderPage from './components/SuccessfulOrderPage/SuccessfulOrde
 
 
 function App () {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     routes: {},
-  //     lastRoutes: [],
-  //     ticketsInfo: {},
-  //     isOrderPage: false,
-  //     passengersPage: false,
-  //     isPayment: false,
-  //     isVerification: false,
-  //     isSuccessfulOrder: false,
-  //     allPassengerList: [],
-  //     user: {},
-  //   }
-
-  //   this.service = new BookingService();
-  // }
-
   const service = new BookingService();
   const [routes, setRoutes] = useState();
   const [lastRoutes, setLastRoutes] = useState();
@@ -43,15 +25,13 @@ function App () {
   const [user, setUser] = useState();
 
   const [isSuccessfulOrder, setIsSuccessfulOrder] = useState(false);
+  const [price, setPrice] = useState();
   
 
   const getRoutesObject = (newRoutes, history) => {
     setRoutes({routes: newRoutes});
-    // this.setState({routes: newRoutes});
-
     service.getLastRoutes()
       .then(res => setLastRoutes(res))
-      // .then(res => this.setState({lastRoutes: res, isOrderPage: true}))
       .catch(error => console.log(error));
 
     setIsOrderPage(true); 
@@ -62,10 +42,6 @@ function App () {
   const getPassangersPage = (passengersInfo, history) => {
     setTicketsInfo(passengersInfo);
     setPassengersPage(true);
-    // this.setState({
-    //   ticketsInfo: passengersInfo, 
-    //   passengersPage: true
-    // })
     if(history) {history.push('/routes/order')};
   }
 
@@ -73,22 +49,12 @@ function App () {
     setAllPassengerList(passengerList);
     setTicketsInfo(tickets);
     setIsPayment(true);
-    // this.setState({
-    //   allPassengerList: passengerList,
-    //   ticketsInfo: tickets,
-    //   isVerification: true,
-    //   isPayment: true,
-    // })
     if(history) {history.push('/routes/order/payment')};
   }
 
   const getVerificationPage = (userInfo, history) => {
     setUser(userInfo);
     setIsVerification(true);
-    // this.setState({
-    //   isVerification: true,
-    //   user: userInfo,
-    // })
     if(history) {history.push('/routes/order/verification')};
   }
 
@@ -97,33 +63,21 @@ function App () {
       setPassengersPage(false);
       setIsPayment(false);
       setIsVerification(false);
-      // this.setState({
-      //   passengersPage: false,
-      //   isPayment: false,
-      //   isVerification: false,
-      // })
     }
     
     if(title === '/routes/order') {
       setIsPayment(false);
       setIsVerification(false);
-      // this.setState({
-      //   isPayment: false,
-      //   isVerification: false,
-      // })
     }
 
     if(title === '/routes/order/payment') {
       setIsVerification(false);
-      // this.setState({
-      //   isVerification: false,
-      // })
     }
 
     history.push(title);
   }
 
-  const postOrderForm = (ticket, allPassengers, user, history) => {
+  const postOrderForm = (price, ticket, allPassengers, user, history) => {
     const seats = allPassengers.map(passenger => {
       return {
         coach_id: "12341",
@@ -144,28 +98,34 @@ function App () {
 
     service.postOrder(ticket.departure._id, seats, user)
       .then(res => {
-        console.log(res.status);
-        // this.setState({
-        //   isOrderPage: false,
-        //   passengersPage: false,
-        //   isPayment: false,
-        //   isVerification: false,
-        //   isSuccessfulOrder: true
-        // })
         setIsOrderPage(false);
         setPassengersPage(false);
         setIsPayment(false);
         setIsVerification(false);
         setIsSuccessfulOrder(true);
+        setPrice(price);
         history.push('/routes/order/verification/successful');
       })
       .catch(error => console.log(error));
 
+      
+
   }
 
+  const redirectMainFirstPage = (history) => {
+    setPassengersPage(false);
+    setIsPayment(false);
+    setIsOrderPage(false); 
+    setIsVerification(false);
+    setIsSuccessfulOrder(false);
+    setTicketsInfo();
+    setAllPassengerList([]);
+    setUser();
+    setRoutes();
+    setLastRoutes();
+    history.push('/');
+  }
 
-  //  render() {
-  //    const {routes, lastRoutes, isOrderPage, passengersPage, isVerification, isPayment, isSuccessfulOrder, ticketsInfo, allPassengerList, user} = this.state;
   return (
     
     <div className="App">
@@ -195,7 +155,7 @@ function App () {
             
           }
           {isSuccessfulOrder && 
-            <Route exact path='/routes/order/verification/successful' render={props => <SuccessfulOrderPage {...props} user={user}/>} />
+            <Route exact path='/routes/order/verification/successful' render={props => <SuccessfulOrderPage {...props} user={user} redirectMainFirstPage={redirectMainFirstPage} price={price}/>} />
           }
 
           {isVerification &&

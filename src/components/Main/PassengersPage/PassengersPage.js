@@ -277,7 +277,7 @@ export default class PassengersPage extends Component {
         </section>
         <section className='verification-btn'>
           <button className="btn-seat-selection" 
-                            onClick={() => this.props.postOrderForm(this.props.ticketsInfo, this.props.allPassengerList, this.props.user, this.props.history)}
+                            onClick={() => this.props.postOrderForm(this.summary(min_price), this.props.ticketsInfo, this.props.allPassengerList, this.props.user, this.props.history)}
                             >Подтвердить</button>
         </section>
 

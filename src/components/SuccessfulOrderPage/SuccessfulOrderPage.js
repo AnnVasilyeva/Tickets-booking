@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import './successfulOrderPage.css';
 
-
-
-
 export default class SuccessfulOrderPage extends Component {
   constructor(props) {
     super(props);
@@ -26,7 +23,7 @@ export default class SuccessfulOrderPage extends Component {
                 <span>№Заказа 285АА</span>
                 <div className='ticket-price'>
                   <span>сумма</span>
-                  <div className='summary-value'>7600</div>
+                  <div className='summary-value'>{this.props.price}</div>
                   <div className='value-image'>
                     <img src="/images/icon-value.png" alt="icon value"/>
                   </div>
@@ -66,7 +63,9 @@ export default class SuccessfulOrderPage extends Component {
           </div>
         </div>
         <div>
-          <button type='button' className='redirect-mainPage-btn'>Вернуться на главную</button>
+          <button type='button' className='redirect-mainPage-btn' 
+                  onClick={() => this.props.redirectMainFirstPage(this.props.history)}
+                  >Вернуться на главную</button>
         </div>
       </section>
     </div>
