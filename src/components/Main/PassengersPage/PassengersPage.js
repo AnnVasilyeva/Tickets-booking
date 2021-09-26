@@ -4,6 +4,7 @@ import FormattingData from "../../../services/formattingData";
 import AsideTrainInfo from "./AsideTrainInfo";
 import FormPassenger from "./FormPassenger";
 import PaymentForm from "./PaymentForm";
+import Ticket from "../Ticket/Ticket";
 
 export default class PassengersPage extends Component {
   constructor(props) {
@@ -47,9 +48,6 @@ export default class PassengersPage extends Component {
     } else {
       this.setState({formPassengersList: [...formPassengersList, passenger]});
     }
-
-    
-
   }
 
   changePassengerItem(id) {
@@ -77,13 +75,19 @@ export default class PassengersPage extends Component {
     this.props.getVerificationPage(state, this.props.history);
   }
 
+  redirectPageVerification = (title) => {
+    this.props.redirectPage(title, this.props.history);
+  }
+
+
   render() {
+    
     const {departureInfo, arrivalInfo, passengersInfo, passengersList, formPassengersList} = this.state;
     const {adult, children, departure: {from, to, min_price}} = this.props.ticketsInfo;
     const {getDateTime} = this.formattingData;
     
     return (
-      // <div className={`container-order-page ${!this.props.isPayment && 'passenger-page-sidebar'}`}>
+      
       <div className='container-order-page passenger-page-sidebar'>
         <aside className="order-page-sidebar">					
           <h2>Детали поездки</h2>
@@ -216,18 +220,71 @@ export default class PassengersPage extends Component {
     {this.props.isPayment && !this.props.isVerification && <PaymentForm getVerification={this.getVerification}/>}
     {this.props.isVerification && 
       <>
-        <section>Train</section>
-        <section>Passengers</section>
-        <section>Payment</section>
-        <section>Button</section>
+        <section className='verification verification-train'>
+          <div className='verification-title'>Поезд</div>
+          <ul className="found-routes-list">
+            <Ticket ticket={this.props.ticketsInfo} getSeatSelection={this.changeTrain} isVerificate={true} redirectPage={this.redirectPageVerification}/>
+          </ul>
+        </section>
+        <section className='verification verification-passengers'>
+          <div className='verification-title'>Пассажиры</div>
+          <div className='verification-passengers-main'>
+            <ul className='verification-passengers-list'>
+              {this.props.allPassengerList.length > 0 && this.props.allPassengerList.map((passenger, index)=> 
+                <li key={index} className='verification-passengers-item'>
+                  <div className='verification-passengers-item-avatar'>
+                    <div className='passenger-avatar'></div>
+                    <span className='person_type'>{passenger.person_type === 'is_adult' ? 'Взрослый' : 'Детский'}</span>
+                  </div>
+                  <div className='verification-passengers-item-info'>
+                    <span>{`${passenger.last_name} ${passenger.first_name} ${[passenger.patronymic]}`} </span>
+                    <span>{`Пол ${passenger.gender ? 'мужской' : 'женский'}`}</span>
+                    <span>{`Дата рождения ${passenger.birthday}`}</span>
+                    <span>{`${passenger.document_type} ${passenger.document_series} ${passenger.document_number}`}</span>
+
+                  </div>
+                </li>
+              )}
+            </ul>
+            <div className='verification-passengers-tickets-price'>
+              <div className="tickets-price-summary">
+                <span>Всего</span>
+                <div className='ticket-price'>
+                  <div className='summary-value'>{this.summary(min_price)}</div>
+                  <div className='value-image'>
+                    <img src="/images/icon-value.png" alt="icon value"/>
+                  </div>
+                </div>
+              </div>
+              <button className="btn-seat-selection" 
+                            onClick={() => this.redirectPageVerification('/routes/order')}
+                            >Изменить</button>
+            </div>
+          </div>
+        </section>
+        <section className='verification verification-payment'>
+          <div className='verification-title'>Способ оплаты</div>
+          <div className='verification-payment-wrapper'>
+            <div className='verification-payment_method'>{this.props.user.payment_method === "online" ? 'Онлайн' : "Наличными"}</div>
+            <div className='verification-payment-btn'>
+              <button className="btn-seat-selection" 
+                            onClick={() => this.redirectPageVerification('/routes/order/payment')}
+                            >Изменить</button>
+            </div>
+            
+          </div>
+          
+        </section>
+        <section className='verification-btn'>
+          <button className="btn-seat-selection" 
+                            onClick={() => this.props.postOrderForm(this.props.ticketsInfo, this.props.allPassengerList, this.props.user, this.props.history)}
+                            >Подтвердить</button>
+        </section>
 
       </>
     }
       
-    </section>
-      
-        	
-      
+    </section>    
     </div>	
     )
   }

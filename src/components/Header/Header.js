@@ -6,9 +6,6 @@ import Progressbar from './Progressbar';
 
 
 export default function Header (props) {
-    
-    const mainPage = 'header';
-    const orderPage = ' order-page';
 
     const navLinksList = [
         {href: '#info', title: 'О нас'},
@@ -29,7 +26,7 @@ export default function Header (props) {
 
     return (
 
-    <header id="header" className={props.isOrderPage ? mainPage + orderPage : mainPage}>
+    <header id="header" className={`header ${props.isOrderPage && 'order-page'} ${props.isSuccessfulOrder && 'successful-order-page'}`}>
         <div className="header-logo">Лого</div>
         <nav className="header-menu">
             <ul className="menu-list">
@@ -37,11 +34,15 @@ export default function Header (props) {
             </ul>
         </nav>
         <div className="header-main">
-            <h1 className="header-title">
-                <span>Вся жизнь -</span>
-                <span>путешествие!</span>
-            </h1>
-            <SearchTicketsForm addRoutes={addRoutes}/>
+            {props.isSuccessfulOrder ?
+                <h1 className="header-title">Благодарим Вас за заказ!</h1> :
+                <h1 className="header-title">
+                    <span>Вся жизнь -</span>
+                    <span>путешествие!</span>
+                </h1>
+            }
+            
+            {!props.isSuccessfulOrder && <SearchTicketsForm addRoutes={addRoutes}/>}            
         </div>
     <div className="header-progressbar">
         {props.isOrderPage && <Progressbar isPassangerPage={props.isPassangerPage} isPayment={props.isPayment} isVerification={props.isVerification}/>}

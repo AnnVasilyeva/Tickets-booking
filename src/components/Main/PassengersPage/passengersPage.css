@@ -519,5 +519,168 @@
 }
 
 
+/* Verification Page */
+
+.verification {
+  background: #FFFFFF;
+  border: 1px solid #C4C4C4;
+  box-sizing: border-box;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  margin-bottom: 45px;
+}
+
+.verification-title {
+  font-weight: 400;
+  font-size: 30px;
+  color: #292929;
+  padding: 28px 30px 30px;
+  text-align: left;
+
+}
+
+.verification-train .found-routes-list {
+  margin-top: 0;
+}
+
+.verification-train .found-routes-list li {
+  border-left: none;
+  border-right: none;
+  box-shadow: none;
+}
+
+.verification-passengers-main, .verification-payment-wrapper {
+  border-top: 1px solid #928F94;
+  display: flex;
+}
+
+.verification-passengers-list {
+  width: 680px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  border-right: 1px dashed #E5E5E5;
+  padding-top: 30px;
+  padding-left: 30px;
+  padding-bottom: 25px;
+  box-sizing: border-box;
+}
+
+.verification-passengers-list li {
+  display: flex;
+  justify-content: flex-start;
+  border-bottom: 1px dashed #E5E5E5;
+  box-sizing: border-box;
+  padding-bottom: 34px;
+  padding-top: 30px;
+}
+
+.verification-passengers-list li:last-of-type {
+  border-bottom: none;
+}
+
+.verification-passengers-item-avatar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.verification-passengers-item-info span {
+  color: #928F94;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+}
+
+.verification-passengers-item-info span:first-of-type {
+  color: #292929;
+  margin-bottom: 5px;
+}
+
+.verification-passengers-item-avatar span { 
+  color: #292929;
+  margin-top: 18px;
+  
+}
+
+.verification-passengers-item-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 32px;
+}
+
+.passenger-avatar {
+  width: 68px;
+  height: 68px;
+  background-image: url('./passenger-image/passenger-avatar.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 68px;
+}
+
+.verification-passengers-tickets-price {
+  width: 280px;
+  padding-left: 25px;
+  padding-right: 23px;
+  padding-bottom: 25px;
+  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.tickets-price-summary { 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+
+.verification-payment_method {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  color: #292929;
+  width: 680px;
+  border-right: 1px dashed #E5E5E5;
+  box-sizing: border-box;
+  padding-top: 30px;
+  padding-left: 30px;
+  padding-bottom: 76px;
+  text-align: left;
+}
+
+.verification-payment-btn {
+  width: 280px;
+  padding-left: 25px;
+  padding-right: 23px;
+  padding-bottom: 25px;
+  align-self: flex-end;
+  box-sizing: border-box;
+}
+
+.verification-payment-btn .btn-seat-selection {
+  width: 233px;
+}
+
+.verification-btn {
+  text-align: right;
+  margin-top: 100px;
+}
+
+.verification-btn .btn-seat-selection {
+  width: 323px;
+  text-transform: uppercase;
+  box-sizing: border-box;
+  padding: 17px 57px;
+}
+ 
+
+
+
 
 

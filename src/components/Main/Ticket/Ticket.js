@@ -3,7 +3,7 @@ import './ticket.css';
 import FormattingData from '../../../services/formattingData';
 import FeaturesList from '../FeaturesList/FeaturesList';
 
-export default function Ticket ({ticket, getSeatSelection}) {
+export default function Ticket ({ticket, getSeatSelection, isVerificate = false, redirectPage}) {
     // console.log(ticket);
     
     const formattingData = new FormattingData();
@@ -130,7 +130,14 @@ export default function Ticket ({ticket, getSeatSelection}) {
                     <div className="railway-carriage-features">
                         <FeaturesList departureInfo={departure}/>
                     </div>
-                    <button className="btn-seat-selection" onClick={() => getSeatSelection(ticket)}>Выбрать места</button>
+                    {isVerificate ? 
+                    <button className="btn-seat-selection" 
+                            onClick={() => redirectPage('/routes')}
+                            >Изменить</button> :
+                    <button className="btn-seat-selection" 
+                            onClick={() => getSeatSelection(ticket)}
+                            >Выбрать места</button>
+                    }
                 </section>
             </footer>
         </li>

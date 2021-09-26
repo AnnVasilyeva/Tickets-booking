@@ -17,7 +17,16 @@
     background-position: center center;
     position: relative;
     height: 695px;
+    width: 1919px;
 
+}
+
+.header.successful-order-page {
+    background-image: url('image/bg-successful.png');
+    background-position: center center;
+    position: relative;
+    height: 834px;
+    width: 1919px;
 }
 
 

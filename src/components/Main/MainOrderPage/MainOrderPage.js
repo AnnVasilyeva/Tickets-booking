@@ -25,9 +25,11 @@ export default function MainOrderPage ({routes, lastRoutes, getPassangersPage, h
 	
 
 	useEffect(() => {
+		if(routesList && routes) {
 		if(!shallowEqual(routesList, routes) && shallowEqual(routesList, {})) {
 			setRoutesList(routes);
 		}
+	}
 	})
 
 	const shallowEqual = (object1, object2) => {
